@@ -61,7 +61,8 @@
          (newline)
          (display ((newton-solve f guess step-differential) step-recursive)))
         (else
-         ((display newtonsolve-inc-func) (newton-solve-application))))
+         (display newtonsolve-inc-func)
+         (newton-solve-application)))
   (local
     ((define (break-pt local-guess local-prec local-step)
        (display newtonsolve-ask-msg)
@@ -103,7 +104,8 @@
          (newline)
          (display (right-derivative f point precision)))
         (else
-         ((display derivative-inc-func) (derivative-application))))
+         (display derivative-inc-func)
+         (derivative-application)))
   (local
     ((define (break-pt local-point local-prec)
        (display derivative-ask-msg)
@@ -142,7 +144,8 @@
          (newline)
          (display (area-fx-rectangular f a b precision)))
         (else
-         ((display integral-inc-func) (integral-application))))
+         (display integral-inc-func)
+         (integral-application)))
   (local
     ((define (break-pt local-a local-b local-prec)
        (display integral-ask-msg)
