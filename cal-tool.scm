@@ -7,6 +7,8 @@
          "library/cal-library/integral1.scm"
          "library/la-library/vec-mag.scm")
 
+(provide caltool-main)
+
 (define ns (make-base-namespace))
 
 (display caltool-intro-msg)

@@ -126,6 +126,10 @@
    "\n"
    "avoid precision that is too small. the programme may run out of memory."
    "\n"
+   "this tool has certain limitations. since it uses the averages of the values on the two sides of subintervals "
+   "to calculate the total partition, it might not detect divergent integrals that don't have values. in this case, "
+   "please adjust precision (size of ||P||) to see if the result is consistent."
+   "\n"
    "to input the point, simply type the number of x axis." "\n" "\n"))
 
 (define integral-ask-func
