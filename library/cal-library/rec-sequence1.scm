@@ -1,4 +1,6 @@
-#lang scheme
+#lang scheme/base
+
+(require scheme/local)
 
 (provide recursive-sequence1
          recursive-sequence2)

@@ -1,4 +1,4 @@
-#lang scheme
+#lang scheme/base
 
 (provide area-fx-rectangular)
 

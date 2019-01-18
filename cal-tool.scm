@@ -1,4 +1,4 @@
-#lang scheme
+#lang scheme/base
 
 (require "text-msg.scm"
          "library/numberlist-check.scm"
@@ -6,6 +6,8 @@
          "library/cal-library/derivative-single-var.scm"
          "library/cal-library/integral1.scm"
          "library/la-library/vec-mag.scm")
+
+(require scheme/local)
 
 (provide caltool-main)
 
@@ -17,6 +19,7 @@
   (display caltool-select-main)
   (define usr-main (read))
   (cond ((eq? usr-main '1)
+         (newline)
          (display caltool-select-cal)
          (define usr-cal (read))
          (cond ((eq? usr-cal '1)
@@ -32,6 +35,7 @@
                 (display caltool-inc-order)
                 (caltool-main))))
         ((eq? usr-main '2)
+         (newline)
          (display caltool-select-vec)
          (define usr-vec (read))
          (cond ((eq? usr-vec '1)

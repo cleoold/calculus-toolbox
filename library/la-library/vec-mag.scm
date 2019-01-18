@@ -1,7 +1,7 @@
-#lang scheme
+#lang scheme/base
 
 (provide vec-mag)
 
 (define (vec-mag u)
   (sqrt
-   (apply + (map sqr u))))
+   (foldr (lambda (x rr) (+ (expt x 2) rr)) 0 u)))

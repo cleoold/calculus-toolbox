@@ -1,4 +1,4 @@
-#lang scheme
+#lang scheme/base
 
 (provide (all-defined-out))
 
@@ -6,7 +6,7 @@
   (string-append
    "           *    *    *    *    *    *    *          "
    "\n"
-   "         *    *    *    *    *    *    *          "
+   "           *    *    *    *    *    *    *          "
    "\n"
    "  welcome to my rough math toolbox for (very limited amout of) calculations in calculus. "
    "\n"
@@ -14,18 +14,19 @@
    "  solving equations, building recurrence sequences and more."
    "\n"
    "  there are memorisation features implemented in this tool. information from your last input will be used"
-   "   if more than one arguments are required."
+   "   if more than one arguments are required, unless you hit `q` to return."
    "\n" "\n"
    "  the tool is written in scheme language. when typing the representation of a function, "
    "  you need to use the correct syntax as determined by the language so that it is readable. "
+   "\n" "\n"
    "  for example, `(sin (- x 1))` represents sin(x - 1). "
-   "\n"
+   "\n" "\n"
    "  to type a vector, simply hit something like `(1 -2 3)`. for matrices, type `((1 -2 3)(1 -2 3)(1 -2 3))`."
    "\n" "\n"
    "  this tool is written by cos. please refer to page github.com/cleoold/calculus-toolbox "
    "   for the source code of this programme as well as their mathematical principles."
    "\n" "\n"
-   "         *    *    *    *    *    *    *          "
+   "           *    *    *    *    *    *    *          "
    "\n"))
 
 (define caltool-select-main
@@ -95,7 +96,7 @@
    "\n"
    "  to input your function, use the full syntax such as `(- (cos x) (* 2 x))`, which represents f(x) = cos(x) - 2x."
    "\n"
-   "  to input the point, simply type the number of x axis." "\n" "\n"))
+   "  to input the point, simply type the number of x axis. also, please stick with the variable `x`." "\n" "\n"))
 
 (define derivative-ask-func
   "  please enter your function.\n")
@@ -124,13 +125,13 @@
    "\n"
    "  to input your function, use the full syntax such as `(- (cos x) (* 2 x))`, which represents f(x) = cos(x) - 2x."
    "\n"
-   "  avoid precision that is too small. the programme may run out of memory."
+   "  avoid precision that is too small. the programme may run out of your memory."
    "\n"
    "  this tool has certain limitations. since it uses the averages of the values on the two sides of subintervals "
    "  to calculate the total partition, it might not detect divergent integrals that don't have values. in this case, "
    "  please adjust precision (size of ||P||) to see if the result is consistent."
    "\n"
-   "  to input the point, simply type the number of x axis." "\n" "\n"))
+   "  to input the point, simply type the number of x axis. also, please stick with the variable `x`. " "\n" "\n"))
 
 (define integral-ask-func
   "  please enter your function.\n")
