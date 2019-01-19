@@ -7,6 +7,8 @@
          "library/cal-library/derivative-single-var.scm"
          "library/cal-library/integral1.scm"
          "library/cal-library/rec-sequence1.scm"
+         "library/cal-library/derivative-partial.scm"
+         "library/cal-library/derivative-dir.scm"
          "library/la-library/vec-mag.scm")
 
 (require scheme/local
@@ -47,6 +49,9 @@
                   (else
                    (display caltool-inc-order)
                    (caltool-main))))
+               ((eq? usr-cal '5)
+                (display partialderivative-main-intro-msg)
+                (partial-application-enter-intro))
                (else
                 (display caltool-inc-order)
                 (caltool-main))))
@@ -66,7 +71,7 @@
          (display caltool-inc-order)
          (caltool-main))))
          
-
+;; ==============================================================
 
 (define (newton-solve-application)
   (display newtonsolve-ask-func)
@@ -114,6 +119,7 @@
           (break-pt local-guess local-prec local-step)))))
     (break-pt guess step-differential step-recursive)))
 
+;; ==============================================================
 
 (define (derivative-application)
   (display derivative-ask-func)
@@ -152,6 +158,7 @@
           (break-pt local-point local-prec)))))
     (break-pt point precision)))
 
+;; ==============================================================
 
 (define (integral-application)
   (display integral-ask-func)
@@ -194,6 +201,7 @@
           (break-pt local-a local-b local-prec)))))
     (break-pt a b precision)))
 
+;; ==============================================================
 
 (define (recsequence1-application)
   (display recsequence-1-ask-a)
@@ -295,7 +303,168 @@
     (else
      (display recsequence-2-inc-func)
      (recsequence2-application))))
-     
+
+;; ==============================================================
+
+
+(define (partial-derivative-application f vars)
+  (display partialderivative-partial-ask-point)
+  (define point (read))
+  (display partialderivative-partial-ask-prec)
+  (define prec (read))
+  (display partialderivative-partial-ask-var)
+  (define var (read))
+  (cond
+    ((and (list? point) (numberlist? point) (number? prec) (symbol? var))
+     (local
+       ((define (break-pt local-point local-prec local-var)
+          (newline)
+          (display partialderivative-partial-ask-msg)
+          (define order (read))
+          (cond
+            ((eq? order '1)
+             (display partialderivative-partial-ask-point)
+             (define new-point (read))
+             (display (p-derivative f vars new-point local-var local-prec))
+             (break-pt new-point local-prec local-var))
+            ((eq? order '2)
+             (display partialderivative-partial-ask-prec)
+             (define new-prec (read))
+             (display (p-derivative f vars local-point local-var new-prec))
+             (break-pt local-point new-prec local-var))
+            ((eq? order '3)
+             (display partialderivative-partial-ask-var)
+             (define new-var (read))
+             (display (p-derivative f vars local-point new-var local-prec))
+             (break-pt local-point local-prec new-var))
+            ((eq? order '4)
+             (partial-application-select vars f))
+            ((eq? order '5)
+             (partial-application-enter-intro))
+            ((eq? order 'q)
+             (caltool-main))
+            (else
+             (display caltool-inc-order)
+             (break-pt local-point local-prec local-var)))))
+       (display (p-derivative f vars point var prec))
+       (break-pt point prec var)))
+    (else
+     (display partialderivative-partial-inc-func)
+     (partial-derivative-application f vars))))
+
+
+(define (partial-gradient-application f vars)
+  (display partialderivative-grad-ask-point)
+  (define point (read))
+  (display partialderivative-grad-ask-prec)
+  (define prec (read))
+  (cond
+    ((and (list? point) (numberlist? point) (number? prec))
+     (local
+       ((define (break-pt local-point local-prec)
+          (newline)
+          (display partialderivative-grad-ask-msg)
+          (define order (read))
+          (cond
+            ((eq? order '1)
+             (display partialderivative-grad-ask-point)
+             (define new-point (read))
+             (display (gradient f vars new-point local-prec))
+             (break-pt new-point local-prec))
+            ((eq? order '2)
+             (display partialderivative-grad-ask-prec)
+             (define new-prec (read))
+             (display (gradient f vars local-point new-prec))
+             (break-pt local-point new-prec))
+            ((eq? order '3)
+             (partial-application-select vars f))
+            ((eq? order '4)
+             (partial-application-enter-intro))
+            ((eq? order 'q)
+             (caltool-main))
+            (else
+             (display caltool-inc-order)
+             (break-pt local-point local-prec)))))
+       (display (gradient f vars point prec))
+       (break-pt point prec)))
+    (else
+     (display partialderivative-grad-inc-func)
+     (partial-gradient-application f vars))))
+
+
+(define (partial-direction-application f vars)
+  (display partialderivative-dir-ask-point)
+  (define point (read))
+  (display partialderivative-dir-ask-prec)
+  (define prec (read))
+  (display partialderivative-dir-ask-dir)
+  (define dir (map degrees->radians (read)))
+  (cond
+    ((and (list? point) (numberlist? point) (number? prec)
+          (list? dir) (numberlist? dir))
+     (local
+       ((define (break-pt local-point local-prec local-dir)
+          (newline)
+          (display partialderivative-dir-ask-msg)
+          (define order (read))
+          (cond
+            ((eq? order '1)
+             (display partialderivative-dir-ask-point)
+             (define new-point (read))
+             (display (directional-derivative f vars new-point local-dir local-prec))
+             (break-pt new-point local-prec local-dir))
+            ((eq? order '2)
+             (display partialderivative-dir-ask-prec)
+             (define new-prec (read))
+             (display (directional-derivative f vars local-point local-dir new-prec))
+             (break-pt local-point new-prec local-dir))
+            ((eq? order '3)
+             (display partialderivative-dir-ask-dir)
+             (define new-dir (map degrees->radians (read)))
+             (display (directional-derivative f vars local-point new-dir local-prec))
+             (break-pt local-point local-prec new-dir))
+            ((eq? order '4)
+             (partial-application-select vars f))
+            ((eq? order '5)
+             (partial-application-enter-intro))
+            ((eq? order 'q)
+             (caltool-main))
+            (else
+             (display caltool-inc-order)
+             (break-pt local-point local-prec local-dir)))))
+       (display (directional-derivative f vars point dir prec))
+       (break-pt point prec dir)))
+    (else
+     (display partialderivative-dir-inc-func)
+     (partial-direction-application f vars))))
+
+
+(define (partial-application-enter-intro)
+  (display partialderivative-ask-vars)
+  (define vars (read))
+  (display partialderivative-ask-func)
+  (define f (eval (read (open-input-string (format "(lambda ~a ~a)" vars (read)))) ns))
+  (cond
+    ((and (list? vars) (procedure? f))
+     (partial-application-select vars f))
+    (else
+     (display partialderivative-partial-inc-func)
+     (partial-application-enter-intro))))
+
+
+(define (partial-application-select vars f)
+  (display partialderivative-ask-feature)
+  (define par-order (read))
+  (cond
+    ((eq? par-order '1)
+     (partial-derivative-application f vars))
+    ((eq? par-order '2)
+     (partial-gradient-application f vars))
+    ((eq? par-order '3)
+     (partial-direction-application f vars))
+    (else
+     (display caltool-inc-order)
+     (partial-application-select vars f))))
 
 
 
@@ -309,10 +478,7 @@
 
 
 
-
-
-
-
+;; ==============================================================
 
 (define (magnitude-application)
   (display mag-ask-vec)

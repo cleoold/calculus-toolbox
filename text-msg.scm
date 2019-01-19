@@ -38,7 +38,8 @@
 (define caltool-select-cal
   (string-append
    "  select your feature" "\n"
-   "  1-solve equation. 2-derivative. 3-integral. 4-recurrence sequence." "\n" "\n"))
+   "  1-solve equation. 2-derivative. 3-integral. 4-recurrence sequence.\n"
+   "  5-multivariable derivative. " "\n" "\n"))
 
 (define caltool-select-vec
   (string-append
@@ -216,7 +217,7 @@
 
 (define recsequence-1-ask-msg
   (string-append
-   "\n" "\n"
+   "\n"
    "  what do you want to do next?" "\n"
    "  1-for a specific term. 2-build between two indices. 3-sum between two indices. 4-new sequence." "\n"
    "  q-return." "\n"))
@@ -249,7 +250,7 @@
 
 (define recsequence-2-ask-msg
   (string-append
-   "\n" "\n"
+   "\n"
    "  what do you want to do next?" "\n"
    "  1-for a specific term. 2-build between two indices. 3-sum between two indices. 4-new sequence." "\n"
    "  q-return." "\n"))
@@ -258,6 +259,92 @@
   "  make sure you typed in the correct format. \n \n")
 
 
+;; ==============================================================
+
+(define partialderivative-main-intro-msg
+  (string-append
+   "  ================================================================================="
+   "\n"
+   "  this menu provides further calculations related to derivatives in multivariable calculus. theorectically, "
+   "it supports functions with infinite dimensions since the computation is as simple as in single variable. "
+   "to type a function, for example, s = f(x,y,z,t) = cos(xt - zy + pi), you need to declare the variables in "
+   "the first box, in this case `(x y z t)`, then type the function `(cos (+ (* x t) (* -1 z y) pi))`.\n"
+   "  to enter the point, type them like vectors, but make sure the length match the number of variables. "
+   "(in fact, that `(x y z t)` is a vector as well)"
+   "\n" "\n"))
+
+(define partialderivative-ask-vars
+  "  enter your variables. they should be enclosed in a pair of brackets, seperated by space.\n")
+
+(define partialderivative-ask-func
+  "  please enter your function.\n")
+
+(define partialderivative-ask-feature
+  (string-append
+   "\n"
+   "  what do you want to do next?" "\n"
+   "  1-partial derivative. 2-gradient. 3-directional derivative." "\n"
+   "  q-return." "\n"))
+
+;; ==================
+
+(define partialderivative-partial-ask-point
+  "  please enter your point.\n")
+
+(define partialderivative-partial-ask-prec
+  "  please enter your desired precision.\n")
+
+(define partialderivative-partial-ask-var
+  "  whith respect to which variable? don't include the bracket.\n")
+
+(define partialderivative-partial-ask-msg
+  (string-append
+   "\n"
+   "  what do you want to do next?" "\n"
+   "  1-change point. 2-change precision. 3-change variable. 4-other features. 5-new function." "\n"
+   "  q-return." "\n"))
+
+(define partialderivative-partial-inc-func
+  "  make sure you typed in the correct format. \n \n")
+
+;; ==================
+
+(define partialderivative-grad-ask-point
+  "  please enter your point.\n")
+
+(define partialderivative-grad-ask-prec
+  "  please enter your desired precision.\n")
+
+(define partialderivative-grad-ask-msg
+  (string-append
+   "\n"
+   "  what do you want to do next?" "\n"
+   "  1-change point. 2-change precision. 3-other features. 4-new function." "\n"
+   "  q-return." "\n"))
+
+(define partialderivative-grad-inc-func
+  "  make sure you typed in the correct format. \n \n")
+
+;; ==================
+
+(define partialderivative-dir-ask-point
+  "  please enter your point.\n")
+
+(define partialderivative-dir-ask-prec
+  "  please enter your desired precision.\n")
+
+(define partialderivative-dir-ask-dir
+  "  enter your direction vector in degrees.\n")
+
+(define partialderivative-dir-ask-msg
+  (string-append
+   "\n"
+   "  what do you want to do next?" "\n"
+   "  1-change point. 2-change precision. 3-change direction. 4-other features. 5-new function." "\n"
+   "  q-return." "\n"))
+
+(define partialderivative-dir-inc-func
+  "  make sure you typed in the correct format. \n \n")
 
 
 ;; ==============================================================
