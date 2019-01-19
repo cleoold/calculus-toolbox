@@ -31,6 +31,7 @@
 
 (define caltool-select-main
   (string-append
+   "        == MAIN PAGE ===       \n"
    "  what do you want to do?" "\n"
    "  1-calculus. 2-vectors. q-exit." "\n" "\n"
    "  to give command, put your number and hit enter." "\n"))
@@ -39,7 +40,7 @@
   (string-append
    "  select your feature" "\n"
    "  1-solve equation. 2-derivative. 3-integral. 4-recurrence sequence.\n"
-   "  5-multivariable derivative. " "\n" "\n"))
+   "  5-multivariable derivative. 0-additional. " "\n" "\n"))
 
 (define caltool-select-vec
   (string-append
@@ -170,7 +171,11 @@
    "\n" "\n"
    "  a one-term-recursive sequence defines its value based on its previous term, given the first term. such expressions look like "
    "\n"
-   "  a(0) = A, a(1) = f[a(0)], a(2) = f[a(1)], ..., a(k) = f[a(k-1)], where f is a function that defines values recursively. "
+   "  a(0) = A, \n"
+   "  a(1) = f[a(0)],\n"
+   "  a(2) = f[a(1)],\n"
+   "  ...,\n"
+   "  a(k) = f[a(k-1)], where f is a function that defines values recursively. "
    "\n"
    "  for example, if you want to compute the sequence {a(0) = 1, a(k) = 2 * a(k-1)}, you need to input `1` for A, and `(* 2 x)` for the "
    "function. this yields a geometric sequence of ratio 2. BE SURE to include `x` to represent your previous term. "
@@ -179,7 +184,11 @@
    "\n" "\n"
    "  a two-term-recursive sequence is similar, but defines its next value by the previous two terms. they look like "
    "\n"
-   " a(0) = A, a(1) = B, a(2) = f[a(0), a(1)], ..., a(k) = f[a(k-2), a(k-1)]. "
+   "  a(0) = A,\n"
+   "  a(1) = B,\n"
+   "  a(2) = f[a(0), a(1)],\n"
+   "  ...,\n"
+   "  a(k) = f[a(k-2), a(k-1)]. "
    "\n"
    "  for example, if you want to compute {a(0) = 1, a(1) = 1, a(k) = a(k-2) + a(k-1)}, type `1` for A, `1` for B, and `(+ x y)` for the "
    "function. this produces a fibonacci sequence. also be sure to include `x` for the second-previous term, and `y` for previous term. "
@@ -267,6 +276,7 @@
    "\n"
    "  this menu provides further calculations related to derivatives in multivariable calculus. theorectically, "
    "it supports functions with infinite dimensions since the computation is as simple as in single variable. "
+   "\n" "\n"
    "to type a function, for example, s = f(x,y,z,t) = cos(xt - zy + pi), you need to declare the variables in "
    "the first box, in this case `(x y z t)`, then type the function `(cos (+ (* x t) (* -1 z y) pi))`.\n"
    "  to enter the point, type them like vectors, but make sure the length match the number of variables. "
@@ -345,6 +355,65 @@
 
 (define partialderivative-dir-inc-func
   "  make sure you typed in the correct format. \n \n")
+
+
+;; ==============================================================
+
+(define calcextra-intro-msg
+  (string-append
+   "  select your feature."
+   "\n"
+   " 1-left/right derivative. 2-left/right integral. 3-SIGMA. 4-PI. 5-baseN converter."
+   "\n" "\n"))
+
+(define calextra-derivative-intro-msg
+  (string-append
+   "  the toolkit uses right derivative in other features, but you can also choose to calculate the "
+   "left derivative of the function f(x). the left derivative will appear on the top, followed by the "
+   "right derivative."
+   "\n" "\n"))
+
+(define calextra-integral-intro-msg
+  (string-append
+   "  you can calculate both left and right Riemann sums to check results. if the program crashes, "
+   "it's not integrable."
+   "\n" "\n"))
+
+(define calextra-sigma-intro-msg
+  (string-append
+   "  if your sequence is in the closed form, you can acquire its partial sum from one index to another index. "
+   "indexes start from zero, if you want your sequence start from 1, replace every of your `x` by `(add1 x)`. this "
+   "increments x by one."
+   "\n" "\n"))
+
+(define calextra-pi-intro-msg
+  (string-append
+   "  if your sequence is in the closed form, you can acquire its partial product from one index to another index. "
+   "indexes start from zero, if you want your sequence start from 1, replace every of your `x` by `(add1 x)`. this "
+   "increments x by one."
+   "\n" "\n"))
+
+(define calextra-toreturn
+  " \n 1-new function. q-return.\n")
+
+(define calextra-basen-ask-msg
+  (string-append
+   " select your feature."
+   "\n"
+   "  1-decimal to base n. 2-base n to decimal."
+   "\n" "\n"))
+
+(define calextra-basen-ask-base
+  "  which base?\n")
+
+(define calextra-basen-ask-num
+  "  enter your number.\n")
+
+(define calextra-basen-ask-next
+  "  1-another conversion. q-return.\n")
+
+(define calextra-basen-inc
+  "  check syntax.\n")
 
 
 ;; ==============================================================

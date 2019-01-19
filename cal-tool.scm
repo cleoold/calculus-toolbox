@@ -9,6 +9,8 @@
          "library/cal-library/rec-sequence1.scm"
          "library/cal-library/derivative-partial.scm"
          "library/cal-library/derivative-dir.scm"
+         "library/cal-library/extra.scm"
+         "library/cal-library/basen.scm"
          "library/la-library/vec-mag.scm")
 
 (require scheme/local
@@ -46,6 +48,30 @@
                    (recsequence1-application))
                   ((eq? usr-seq '2)
                    (recsequence2-application))
+                  (else
+                   (display caltool-inc-order)
+                   (caltool-main))))
+               ((eq? usr-cal '5)
+                (display partialderivative-main-intro-msg)
+                (partial-application-enter-intro))
+               ((eq? usr-cal '0)
+                (display calcextra-intro-msg)
+                (define usr-extra (read))
+                (cond
+                  ((eq? usr-extra '1)
+                   (display calextra-derivative-intro-msg)
+                   (derivative/lr-application))
+                  ((eq? usr-extra '2)
+                   (display calextra-integral-intro-msg)
+                   (integral/lr-application))
+                  ((eq? usr-extra '3)
+                   (display calextra-sigma-intro-msg)
+                   (sigma-application))
+                  ((eq? usr-extra '4)
+                   (display calextra-pi-intro-msg)
+                   (bigpi-application))
+                  ((eq? usr-extra '5)
+                   (basen-application))
                   (else
                    (display caltool-inc-order)
                    (caltool-main))))
@@ -467,6 +493,167 @@
      (partial-application-select vars f))))
 
 
+;; ==============================================================
+
+(define (derivative/lr-application)
+  (display derivative-ask-func)
+  (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
+  (display derivative-ask-point)
+  (define point (eval (read) ns))
+  (display derivative-ask-prec)
+  (define precision (read))
+  (cond ((and (procedure? f) (number? point) (number? precision))
+         (newline)
+         (printf "L: ~a\n" (left-derivative f point precision))
+         (printf "R: ~a" (right-derivative f point precision))
+         (newline)
+         (display calextra-toreturn)
+         (define order (read))
+         (cond
+     ;      ((eq? order 'q)
+     ;       (caltool-main))
+           ((eq? order '1)
+            (derivative/lr-application))
+           (else
+            (caltool-main))))
+        (else
+         (display derivative-inc-func)
+         (derivative/lr-application))))
+
+;; ==============================================================
+
+(define (integral/lr-application)
+  (display integral-ask-func)
+  (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
+  (display integral-ask-pointa)
+  (define a (eval (read) ns))
+  (display integral-ask-pointb)
+  (define b (eval (read) ns))
+  (display integral-ask-prec)
+  (define precision (read))
+  (cond ((and (procedure? f) (number? a) (number? b) (number? precision))
+         (newline)
+         (printf "L: ~a\n" (area-fx-rectangular-left f a b precision))
+         (printf "R: ~a" (area-fx-rectangular-right f a b precision))
+         (newline)
+         (display calextra-toreturn)
+         (define order (read))
+         (cond
+      ;     ((eq? order 'q)
+      ;      (caltool-main))
+           ((eq? order '1)
+            (integral/lr-application))
+           (else
+            (caltool-main))))
+        (else
+         (display integral-inc-func)
+         (integral/lr-application))))
+
+;; ==============================================================
+
+(define (sigma-application)
+  (display recsequence-1-ask-func)
+  (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
+  (display recsequence-1-23-ask-from)
+  (define from (read))
+  (display recsequence-1-23-ask-to)
+  (define to (read))
+  (cond ((and (procedure? f) (natural? from) (natural? to))
+         (newline)
+         (printf "~a - ~a = ~a" (sigma f to) (sigma f from)
+                 (- (sigma f to) (sigma f from)))
+         (newline)
+         (display calextra-toreturn)
+         (define order (read))
+         (cond
+       ;    ((eq? order 'q)
+       ;     (caltool-main))
+           ((eq? order '1)
+            (sigma-application))
+           (else
+            (caltool-main))))
+        (else
+         (display recsequence-1-inc-func)
+         (sigma-application))))
+
+;; ==============================================================
+
+(define (bigpi-application)
+  (display recsequence-1-ask-func)
+  (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
+  (display recsequence-1-23-ask-from)
+  (define from (read))
+  (display recsequence-1-23-ask-to)
+  (define to (read))
+  (cond ((and (procedure? f) (natural? from) (natural? to))
+         (newline)
+         (printf "~a / ~a = ~a" (bigpi f to) (bigpi f from)
+                 (/ (bigpi f to) (bigpi f from)))
+         (newline)
+         (display calextra-toreturn)
+         (define order (read))
+         (cond
+      ;     ((eq? order 'q)
+      ;      (caltool-main))
+           ((eq? order '1)
+            (bigpi-application))
+           (else
+            (caltool-main))))
+        (else
+         (display recsequence-1-inc-func)
+         (bigpi-application))))
+
+;; ==============================================================
+  
+(define (basen-application)
+  (display calextra-basen-ask-msg)
+  (define basn-order (read))
+  (cond
+    ((eq? basn-order '1)
+     (display calextra-basen-ask-base)
+     (define base (read))
+     (display calextra-basen-ask-num)
+     (define num (read))
+     (cond
+       ((and (number? base) (number? num) (positive? base) (positive? num))
+        (newline)
+        (display (dec->basen base num))
+        (newline)
+        (display calextra-basen-ask-next)
+        (define order (read))
+        (cond
+          ((eq? order '1)
+           (basen-application))
+          (else
+           (caltool-main))))
+       (else
+        (display calextra-basen-inc)
+        (basen-application))))
+    ((eq? basn-order '2)
+     (display calextra-basen-ask-base)
+     (define base (read))
+     (display calextra-basen-ask-num)
+     (define num (read))
+     (cond
+       ((and (number? base) (number? num) (positive? base) (positive? num) (<= base 10))
+        (newline)
+        (display (basen->dec base num))
+        (newline)
+        (display calextra-basen-ask-next)
+        (define order (read))
+        (cond
+          ((eq? order '1)
+           (basen-application))
+          (else
+           (caltool-main))))
+       (else
+        (display calextra-basen-inc)
+        (basen-application))))
+    (else
+     (display caltool-inc-order)
+     (basen-application))))
+        
+     
 
 
 

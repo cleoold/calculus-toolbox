@@ -2,7 +2,8 @@
 
 (require scheme/math)
 
-(provide area-fx-rectangular)
+(provide area-fx-rectangular
+         area/acc/temp)
 
 (define (area-sq x-1 x-2 height) (* (- x-2 x-1) height))
 
