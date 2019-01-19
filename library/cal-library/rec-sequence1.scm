@@ -1,6 +1,7 @@
 #lang scheme/base
 
-(require scheme/local)
+(require scheme/local
+         scheme/math)
 
 (provide recursive-sequence1
          recursive-sequence2)

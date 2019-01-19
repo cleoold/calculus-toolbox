@@ -1,5 +1,7 @@
 #lang scheme/base
 
+(require scheme/math)
+
 (require "rec-sequence1.scm"
          "derivative-single-var.scm")
 

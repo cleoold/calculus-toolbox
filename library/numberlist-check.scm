@@ -1,5 +1,7 @@
 #lang scheme/base
 
+(require scheme/math)
+
 (provide numberlist?)
 
 (define (numberlist? lst)

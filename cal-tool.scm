@@ -2,16 +2,20 @@
 
 (require "text-msg.scm"
          "library/numberlist-check.scm"
+         "library/roundoff.scm"
          "library/cal-library/newton-solve.scm"
          "library/cal-library/derivative-single-var.scm"
          "library/cal-library/integral1.scm"
+         "library/cal-library/rec-sequence1.scm"
          "library/la-library/vec-mag.scm")
 
-(require scheme/local)
+(require scheme/local
+         scheme/math)
 
 (provide caltool-main)
 
-(define ns (make-base-namespace))
+(define-namespace-anchor a)
+(define ns (namespace-anchor->namespace a))
 
 (display caltool-intro-msg)
 
@@ -31,6 +35,18 @@
                ((eq? usr-cal '3)
                 (display integral-intro-msg)
                 (integral-application))
+               ((eq? usr-cal '4)
+                (display recsequence-main-intro-msg)
+                (display recsequence-main-select)
+                (define usr-seq (read))
+                (cond
+                  ((eq? usr-seq '1)
+                   (recsequence1-application))
+                  ((eq? usr-seq '2)
+                   (recsequence2-application))
+                  (else
+                   (display caltool-inc-order)
+                   (caltool-main))))
                (else
                 (display caltool-inc-order)
                 (caltool-main))))
@@ -56,7 +72,7 @@
   (display newtonsolve-ask-func)
   (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
   (display newtonsolve-ask-guess)
-  (define guess (read))
+  (define guess (eval (read) ns))
   (display newtonsolve-ask-prec)
   (define step-differential (read))
   (display newtonsolve-ask-recur)
@@ -76,7 +92,7 @@
        (cond
          ((eq? order '1)
           (display newtonsolve-ask-guess)
-          (define new-guess (read))
+          (define new-guess (eval (read) ns))
           (display ((newton-solve f new-guess local-prec) local-step))
           (break-pt new-guess local-prec local-step))
          ((eq? order '2)
@@ -103,7 +119,7 @@
   (display derivative-ask-func)
   (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
   (display derivative-ask-point)
-  (define point (read))
+  (define point (eval (read) ns))
   (display derivative-ask-prec)
   (define precision (read))
   (cond ((and (procedure? f) (number? point) (number? precision))
@@ -119,7 +135,7 @@
        (cond
          ((eq? order '1)
           (display derivative-ask-point)
-          (define new-point (read))
+          (define new-point (eval (read) ns))
           (display (right-derivative f new-point local-prec))
           (break-pt new-point local-prec))
          ((eq? order '2)
@@ -141,9 +157,9 @@
   (display integral-ask-func)
   (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
   (display integral-ask-pointa)
-  (define a (read))
+  (define a (eval (read) ns))
   (display integral-ask-pointb)
-  (define b (read))
+  (define b (eval (read) ns))
   (display integral-ask-prec)
   (define precision (read))
   (cond ((and (procedure? f) (number? a) (number? b) (number? precision))
@@ -159,9 +175,9 @@
        (cond
          ((eq? order '1)
           (display integral-ask-pointa)
-          (define new-a (read))
+          (define new-a (eval (read) ns))
           (display integral-ask-pointb)
-          (define new-b (read))
+          (define new-b (eval (read) ns))
           (display (area-fx-rectangular f new-a new-b local-prec))
           (break-pt new-a new-b local-prec))
          ((eq? order '2)
@@ -179,8 +195,107 @@
     (break-pt a b precision)))
 
 
+(define (recsequence1-application)
+  (display recsequence-1-ask-a)
+  (define a (eval (read) ns))
+  (display recsequence-1-ask-func)
+  (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
+  (cond
+    ((and (number? a) (procedure? f))
+     (local
+       ((define (break-pt)
+          (display recsequence-1-ask-msg)
+          (define feature-order (read))
+          (cond
+            ((eq? feature-order '1)
+             (display recsequence-1-1-ask-term)
+             (define term (read))
+             (display ((recursive-sequence1 a f) term))
+             (newline)
+             (break-pt))
+            ((eq? feature-order '2)
+             (display recsequence-1-23-ask-from)
+             (define from (read))
+             (display recsequence-1-23-ask-to)
+             (define to (read))
+             (display (for ((k (in-range from to)))
+                        (printf "~a, " (round-off ((recursive-sequence1 a f) k) 6))))
+             (newline)
+             (break-pt))
+            ((eq? feature-order '3)
+             (display recsequence-1-23-ask-from)
+             (define from (read))
+             (display recsequence-1-23-ask-to)
+             (define to (read))
+             (define upper (apply + (build-list to (recursive-sequence1 a f))))
+             (define lower (apply + (build-list from (recursive-sequence1 a f))))
+             (printf "~a - ~a = ~a." upper lower (- upper lower))
+             (newline)
+             (break-pt))
+            ((eq? feature-order '4)
+             (recsequence1-application))
+            ((eq? feature-order 'q)
+             (caltool-main))
+            (else
+             (display caltool-inc-order)
+             (break-pt)))))
+       (break-pt)))
+    (else
+     (display recsequence-1-inc-func)
+     (recsequence1-application))))
 
 
+(define (recsequence2-application)
+  (display recsequence-2-ask-a)
+  (define a (eval (read) ns))
+  (display recsequence-2-ask-b)
+  (define b (eval (read) ns))
+  (display recsequence-2-ask-func)
+  (define f (eval (read (open-input-string (format "(lambda (x y) ~a)" (read)))) ns))
+  (cond
+    ((and (number? a) (number? b) (procedure? f))
+     (local
+       ((define (break-pt)
+          (display recsequence-2-ask-msg)
+          (define feature-order (read))
+          (cond
+            ((eq? feature-order '1)
+             (display recsequence-2-1-ask-term)
+             (define term (read))
+             (display ((recursive-sequence2 a b f) term))
+             (newline)
+             (break-pt))
+            ((eq? feature-order '2)
+             (display recsequence-2-23-ask-from)
+             (define from (read))
+             (display recsequence-2-23-ask-to)
+             (define to (read))
+             (display (for ((k (in-range from to)))
+                        (printf "~a, " (round-off ((recursive-sequence2 a b f) k) 6))))
+             (newline)
+             (break-pt))
+            ((eq? feature-order '3)
+             (display recsequence-2-23-ask-from)
+             (define from (read))
+             (display recsequence-2-23-ask-to)
+             (define to (read))
+             (define upper (apply + (build-list to (recursive-sequence2 a b f))))
+             (define lower (apply + (build-list from (recursive-sequence2 a b f))))
+             (printf "~a - ~a = ~a." upper lower (- upper lower))
+             (newline)
+             (break-pt))
+            ((eq? feature-order '4)
+             (recsequence2-application))
+            ((eq? feature-order 'q)
+             (caltool-main))
+            (else
+             (display caltool-inc-order)
+             (break-pt)))))
+       (break-pt)))
+    (else
+     (display recsequence-2-inc-func)
+     (recsequence2-application))))
+     
 
 
 

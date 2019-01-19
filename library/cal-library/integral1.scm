@@ -1,5 +1,7 @@
 #lang scheme/base
 
+(require scheme/math)
+
 (provide area-fx-rectangular)
 
 (define (area-sq x-1 x-2 height) (* (- x-2 x-1) height))

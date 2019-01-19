@@ -38,7 +38,7 @@
 (define caltool-select-cal
   (string-append
    "  select your feature" "\n"
-   "  1-solve equation. 2-derivative. 3-integral." "\n" "\n"))
+   "  1-solve equation. 2-derivative. 3-integral. 4-recurrence sequence." "\n" "\n"))
 
 (define caltool-select-vec
   (string-append
@@ -157,7 +157,105 @@
 
 ;; ==============================================================
 
+(define recsequence-main-intro-msg
+  (string-append
+   "  ================================================================================="
+   "\n"
+   "  this tool automatically computes terms of sequences that aren't defined in closed forms. you can refer to one "
+   "specific term or a list of entries from index k=a to a another index k=b. to define a recurrence sequence in this tool, "
+   "like functions, you also need to use the correct syntax."
+   "\n"
+   "  please read carefully the following rules: "
+   "\n" "\n"
+   "  a one-term-recursive sequence defines its value based on its previous term, given the first term. such expressions look like "
+   "\n"
+   "  a(0) = A, a(1) = f[a(0)], a(2) = f[a(1)], ..., a(k) = f[a(k-1)], where f is a function that defines values recursively. "
+   "\n"
+   "  for example, if you want to compute the sequence {a(0) = 1, a(k) = 2 * a(k-1)}, you need to input `1` for A, and `(* 2 x)` for the "
+   "function. this yields a geometric sequence of ratio 2. BE SURE to include `x` to represent your previous term. "
+   "\n"
+   "  if this is what you want, enter 1. "
+   "\n" "\n"
+   "  a two-term-recursive sequence is similar, but defines its next value by the previous two terms. they look like "
+   "\n"
+   " a(0) = A, a(1) = B, a(2) = f[a(0), a(1)], ..., a(k) = f[a(k-2), a(k-1)]. "
+   "\n"
+   "  for example, if you want to compute {a(0) = 1, a(1) = 1, a(k) = a(k-2) + a(k-1)}, type `1` for A, `1` for B, and `(+ x y)` for the "
+   "function. this produces a fibonacci sequence. also be sure to include `x` for the second-previous term, and `y` for previous term. "
+   "\n"
+   "  if this is what you want, enter 2. "
+   "\n"
+   "\n"
+   "  also acknowledge the sequence starts with index 0, which means 0 implies the first term. and 0 ~ 4 means 1st, 2nd, 3rd, 4nd terms, "
+   "not including the fifth, so 4 terms in total. other indices follow. "
+   "\n" "\n"))
 
+(define recsequence-main-select
+  "  please enter your order.\n")
+
+
+;; ==================
+
+(define recsequence-1-ask-a
+  "  please enter your A, this is the first term.\n")
+
+(define recsequence-1-ask-func
+  "  please define your sequence.\n")
+
+;(define recsequence-1-ask-feature
+;  "  1-for a specific term. 2-build between two indices. 3-sum between two indices.\n")
+
+(define recsequence-1-1-ask-term
+  "  which index?\n")
+
+(define recsequence-1-23-ask-from
+  "  from which index?\n")
+
+(define recsequence-1-23-ask-to
+  "  to which index?\n")
+
+(define recsequence-1-ask-msg
+  (string-append
+   "\n" "\n"
+   "  what do you want to do next?" "\n"
+   "  1-for a specific term. 2-build between two indices. 3-sum between two indices. 4-new sequence." "\n"
+   "  q-return." "\n"))
+
+(define recsequence-1-inc-func
+  "  make sure you typed in the correct format. \n \n")
+
+;; ==================
+
+(define recsequence-2-ask-a
+  "  please enter your A, this is the first term.\n")
+
+(define recsequence-2-ask-b
+  "  please enter your B, this is the second term.\n")
+
+(define recsequence-2-ask-func
+  "  please define your sequence.\n")
+
+;(define recsequence-2-ask-feature
+;  "  1-for a specific term. 2-build between two indices. 3-sum between two indices.\n")
+
+(define recsequence-2-1-ask-term
+  "  which term?\n")
+
+(define recsequence-2-23-ask-from
+  "  from which index?\n")
+
+(define recsequence-2-23-ask-to
+  "  to which index?\n")
+
+(define recsequence-2-ask-msg
+  (string-append
+   "\n" "\n"
+   "  what do you want to do next?" "\n"
+   "  1-for a specific term. 2-build between two indices. 3-sum between two indices. 4-new sequence." "\n"
+   "  q-return." "\n"))
+
+(define recsequence-2-inc-func
+  "  make sure you typed in the correct format. \n \n")
 
 
 
