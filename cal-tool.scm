@@ -11,7 +11,9 @@
          "library/cal-library/derivative-dir.scm"
          "library/cal-library/extra.scm"
          "library/cal-library/basen.scm"
-         "library/la-library/vec-mag.scm")
+         "library/la-library/vec-basic.scm"
+         "library/la-library/cross-rotation.scm"
+         "library/la-library/projection.scm")
 
 (require scheme/local
          scheme/math)
@@ -88,9 +90,22 @@
          (cond ((eq? usr-vec '1)
                 (display mag-intro-msg)
                 (magnitude-application))
+               ((eq? usr-vec '2)
+                (display product-intro-msg)
+                (product-application))
+               ((eq? usr-vec '3)
+                (display projection-intro-msg)
+                (projection-application))
+               ((eq? usr-vec '4)
+                (display rotation2d-intro-msg)
+                (rotation2d-application))
                (else
                 (display caltool-inc-order)
                 (caltool-main))))
+        ((eq? usr-main 'd)
+         (newline)
+         (display intro-convention)
+         (caltool-main))
         ((eq? usr-main 'q)
          (exit))
         (else
@@ -653,18 +668,6 @@
      (display caltool-inc-order)
      (basen-application))))
         
-     
-
-
-
-
-
-
-
-
-
-
-
 ;; ==============================================================
 
 (define (magnitude-application)
@@ -692,9 +695,91 @@
               (break-pt)))))
     (break-pt)))
 
+;; ==============================================================
 
 
+(define (product-application)
+  (display product-ask-vec1)
+  (define u (read))
+  (display product-ask-vec2)
+  (define v (read))
+  (cond ((and (list? u) (numberlist? u) (list? v) (numberlist? v)
+              (eq? (length u) (length v)))
+         (newline)
+         (cond
+           ((eq? (length u) 3)
+            (printf "inner product: ~a\n" (vec-dot u v))
+            (printf "cross product: ~a" (vec-cross u v)))
+           (else
+            (display (vec-dot u v))))
+         (newline)
+         (display product-ask-msg)
+         (define order (read))
+         (cond
+           ((eq? order '1)
+            (product-application))
+    ;       ((eq? order 'q)
+    ;          (caltool-main))
+           (else
+            (display caltool-inc-order)
+            (caltool-main))))
+        (else
+         (display product-inc-vec)
+         (product-application))))
 
+;; ==============================================================
+
+(define (projection-application)
+  (display projection-ask-vec1)
+  (define x (read))
+  (display projection-ask-vec2)
+  (define u (read))
+  (cond ((and (list? x) (numberlist? x) (list? u) (numberlist? u)
+              (eq? (length x) (length u)))
+         (newline)
+         (display (proj u x)) (newline)
+         (display (perp u x)) (newline)
+         (display (refl u x))
+         (newline)
+         (display product-ask-msg)
+         (define order (read))
+         (cond
+           ((eq? order '1)
+            (projection-application))
+      ;     ((eq? order 'q)
+      ;        (caltool-main))
+           (else
+            (display caltool-inc-order)
+            (caltool-main))))
+        (else
+         (display projection-inc-vec)
+         (projection-application))))
+
+;; ==============================================================
+
+(define (rotation2d-application)
+  (display rotation2d-ask-vec)
+  (define u (read))
+  (display rotation2d-ask-angle)
+  (define a (degrees->radians (read)))
+  (cond ((and (list? u) (numberlist? u) (number? a)
+              (eq? (length u) 2))
+         (newline)
+         (display (map (lambda (x) (round-off x 6)) (r2 u a)))
+         (newline)
+         (display rotation2d-ask-msg)
+         (define order (read))
+         (cond
+           ((eq? order '1)
+            (rotation2d-application))
+      ;     ((eq? order 'q)
+      ;        (caltool-main))
+           (else
+            (display caltool-inc-order)
+            (caltool-main))))
+        (else
+         (display rotation2d-inc-vec)
+         (rotation2d-application))))
 
 
 

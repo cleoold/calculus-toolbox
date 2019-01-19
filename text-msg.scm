@@ -33,7 +33,9 @@
   (string-append
    "        == MAIN PAGE ===       \n"
    "  what do you want to do?" "\n"
-   "  1-calculus. 2-vectors. q-exit." "\n" "\n"
+   "  1-calculus. 2-vectors."
+   "\n"
+   "  d-function conventions. q-exit." "\n" "\n"
    "  to give command, put your number and hit enter." "\n"))
 
 (define caltool-select-cal
@@ -45,7 +47,7 @@
 (define caltool-select-vec
   (string-append
    "  select your feature" "\n"
-   "  1-magnitude" "\n" "\n"))
+   "  1-magnitude. 2-product. 3-projection. 4-rotation(2D)." "\n" "\n"))
 
 (define caltool-inc-order
   "  that is not a valid order.\n \n")
@@ -368,6 +370,8 @@
 
 (define calextra-derivative-intro-msg
   (string-append
+   "  ================================================================================="
+   "\n"
    "  the toolkit uses right derivative in other features, but you can also choose to calculate the "
    "left derivative of the function f(x). the left derivative will appear on the top, followed by the "
    "right derivative."
@@ -375,12 +379,16 @@
 
 (define calextra-integral-intro-msg
   (string-append
+   "  ================================================================================="
+   "\n"
    "  you can calculate both left and right Riemann sums to check results. if the program crashes, "
    "it's not integrable."
    "\n" "\n"))
 
 (define calextra-sigma-intro-msg
   (string-append
+   "  ================================================================================="
+   "\n"
    "  if your sequence is in the closed form, you can acquire its partial sum from one index to another index. "
    "indexes start from zero, if you want your sequence start from 1, replace every of your `x` by `(add1 x)`. this "
    "increments x by one."
@@ -388,6 +396,8 @@
 
 (define calextra-pi-intro-msg
   (string-append
+   "  ================================================================================="
+   "\n"
    "  if your sequence is in the closed form, you can acquire its partial product from one index to another index. "
    "indexes start from zero, if you want your sequence start from 1, replace every of your `x` by `(add1 x)`. this "
    "increments x by one."
@@ -398,6 +408,8 @@
 
 (define calextra-basen-ask-msg
   (string-append
+   "  ================================================================================="
+   "\n"
    " select your feature."
    "\n"
    "  1-decimal to base n. 2-base n to decimal."
@@ -436,17 +448,113 @@
 (define mag-inc-vec
   "  make sure you typed in the correct format.\n \n")
 
+;; ==============================================================
+
+(define product-intro-msg
+    (string-append
+   "  ================================================================================="
+   "\n"
+   "  this tool computes the inner product of two vectors. if the lengths of two vectors "
+   "are 3, then their cross product u * v will then be computed."
+   "\n" "\n"))
+
+(define product-ask-vec1
+  "  please enter your first vector u.\n")
+
+(define product-ask-vec2
+  "  please enter your second vector v.\n")
+
+(define product-ask-msg
+  (string-append
+   "\n" "\n"
+   "  what do you want to do next?" "\n"
+   "  1-change vectors. q-return." "\n"))
+
+(define product-inc-vec
+  "  make sure you typed in the correct format.\n \n")
+
+;; ==============================================================
+
+(define projection-intro-msg
+    (string-append
+   "  ================================================================================="
+   "\n"
+   "  enter your two vectors x and u, the following will be computed in order:\n"
+   "  1. projection of vector x onto vector u.\n"
+   "  1. perpendicular of vector x onto vector u.\n"
+   "  1. reflection of vector x onto the hyperplane with normal u.\n"
+   "\n"))
+
+(define projection-ask-vec1
+  "  please enter vector x.\n")
+
+(define projection-ask-vec2
+  "  please enter vector u.\n")
+
+(define projection-ask-msg
+  (string-append
+   "\n" "\n"
+   "  what do you want to do next?" "\n"
+   "  1-change vectors. q-return." "\n"))
+
+(define projection-inc-vec
+  "  make sure you typed in the correct format.\n \n")
+
+;; ==============================================================
+
+(define rotation2d-intro-msg
+    (string-append
+   "  ================================================================================="
+   "\n"
+   "  using the rotation matrix to rotate the vector in 2D.\n"
+   "\n"))
+
+(define rotation2d-ask-vec
+  "  please enter your vector.\n")
+
+(define rotation2d-ask-angle
+  "  please enter your angle in degrees.\n")
+
+(define rotation2d-ask-msg
+  (string-append
+   "\n" "\n"
+   "  what do you want to do next?" "\n"
+   "  1-change vector. q-return." "\n"))
+
+(define rotation2d-inc-vec
+  "  make sure you typed in the correct format.\n \n")
 
 
 
 
 
 
-
-
-
-
-
+(define intro-convention
+  (string-append
+   "      below lists some expression convention examples from typing (left) to scheme (right)."
+   "\n" "\n"
+   "     x + 7  =>  (+ x 7)\n"
+   "     x * 1.6  =>  (* x 1.6)\n"
+   "     5 - 2  =>  (- 5 2) or (+ 5 (- 2))\n"
+   "     pi / 3.14  =>  (/ pi 3)\n"
+   "     e = e^1  =>  (exp 1)\n"
+   "     x^(1/2)  =>  (expt x 1/2) or (sqrt x)\n"
+   "     cos(x)  =>  (cos x)\n"
+   "\n"
+   "     tan[atan(x)]  =>  (tan (atan x))\n"
+   "     floor[cosh(3x+1)]  =>  (floor (cosh (+ (* 3 x) 1)))\n"
+   "     asin[sqrt(x^2-1)]  =>  (asin (sqrt (- (expt x 2) 1)))\n"
+   "\n"
+   "     2log(1/x) - y  =>  (- (* 2 (log (/ 1 x))) y)\n"
+   "     1.4cos(pi*x-4.5t+6)  =>  (* 1.4 (cos (+ (* pi x) (* -4.5 t) 6)))\n"
+   "     x^8 + y^(- 2)  => (+ (expt x 8) (expt y -2))\n"
+   "\n"
+   "     [2,3,-2,4]  =>  (2 3 -2 4)\n"
+   "     [x,y,z]  =>  (x y z)\n"
+   "     visit scheme/racket documentation for more info."
+   "\n"
+   "\n" "\n" "\n"))
+   
 
 
 
