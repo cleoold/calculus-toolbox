@@ -504,6 +504,8 @@
      (partial-gradient-application f vars))
     ((eq? par-order '3)
      (partial-direction-application f vars))
+    ((eq? par-order 'q)
+     (caltool-main))
     (else
      (display caltool-inc-order)
      (partial-application-select vars f))))
