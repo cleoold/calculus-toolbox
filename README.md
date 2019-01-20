@@ -42,8 +42,9 @@ whether the derivative exists.
 ### Integration
 Like others, you have to include `x` and syntax. You will be asked to input the lower bound (from), the upper bound (to) and precision.
 Note this precision _"delta"_ represents the length of the step <img src="https://latex.codecogs.com/svg.latex?\small&space;\left&space;\|&space;P&space;\right&space;\|" title="\small \left \| P \right \|" /> for the partition. This tool creates
-a uniform partition with that length (except the last sub-interval, please see [code](https://github.com/cleoold/Math-expressions-or-racket-/blob/folder1/math-num-integral.rkt) for info) and sum the average values of two ends of the subinterval according to the midpoint rule. This process can be described as  
+a uniform partition with that length (if delta cannot divide the length of the interval, a shorter interval is created to terminate the programme, please see [code](https://github.com/cleoold/Math-expressions-or-racket-/blob/folder1/math-num-integral.rkt) for info) and sum the average values of two ends of the subinterval according to the midpoint rule. This process can be described as  
 <img src="https://latex.codecogs.com/svg.latex?\small&space;\int_{[a,b]}f=\sum&space;_{k=1}^{N=\left&space;\lfloor&space;(b-a)/\delta&space;\right&space;\rfloor}\frac{1}{2}[f(p_{k-1})&plus;f(p_k)]\left&space;\|&space;P&space;\right&space;\|&plus;\frac{1}{2}[f(p_N)&plus;f(p_{N&plus;1})][b-a-N\left&space;\|&space;P&space;\right&space;\|]" title="\small \int_{[a,b]}f=\sum _{k=1}^{N=\left \lfloor (b-a)/\delta \right \rfloor}\frac{1}{2}[f(p_{k-1})+f(p_k)]\left \| P \right \|+\frac{1}{2}[f(p_N)+f(p_{N+1})][b-a-N\left \| P \right \|]" />  
+In which the term on the right can be avoided upon decreasing value of precision, or by using rational bounds.
 If you want to evaluate the left or right integral, you can go to the `additional` menu to do so. This is useful for determining if 
 the integral exists; if the programme crashes, then it is not integrable over the interval.
 ### Recurrence sequence
