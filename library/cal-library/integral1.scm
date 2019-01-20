@@ -15,4 +15,4 @@
 
 (define (area-fx-rectangular f a b step)
   (area/acc/temp f b step a a
-    (lambda (interval) (/ (+ (car interval) (cadr interval)) 2))))
+    (lambda (interv) (/ (+ (car interv) (cadr interv)) 2))))
