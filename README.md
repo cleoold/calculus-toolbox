@@ -85,6 +85,6 @@ The tool also provides vector rotation, vector molulo, sum/product of sequence a
 
 ---
 ## Progress
-I give up on vector addition, hexadecimal conversion, building function table, etc as they are less challenging and can be found anywhere on-line or on your scientific calculator. In the future, I will plan to implement approximations of curve length and double integral, and some matrix operations such as multiplication and determintants.
+I give up on vector addition, hexadecimal conversion, building function table, etc as they are less challenging and can be found anywhere on-line or on your scientific calculator. In the future, I will plan to implement approximations of curve length and double integral, and some matrix operations such as multiplication and determinants.
 
 
