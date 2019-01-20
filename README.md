@@ -54,3 +54,11 @@ Now you can enter your A, and B if necessary. In the next step, if you entered `
   
 You can then input your order to evaluate things, below shows a sequence defined by <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\left&space;\{a:&space;a_0=1,a_1=1,a_k=\sqrt{a_{k-2}}&plus;\sqrt{a_{k-1}}&space;\right&space;\}" title="\small \left \{a: a_0=1,a_1=1,a_k=\sqrt{a_{k-2}}+\sqrt{a_{k-1}} \right \}" />.
 <a href="https://ibb.co/KWXBF05"><img src="https://i.ibb.co/fH2Z41X/4211245.png" alt="4211245" border="1"></a>
+### Gradient
+This menu calculates partial derivative, gradient, and directional derivative for a function defined by multiple variables.
+To start, enter your list of variables enclosed by brackets in the first screen, then input the function that has these variables.
+For example, for <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;f(x,y,z)=\sqrt[3]{xyz}" title="\small f(x,y,z)=\sqrt[3]{xyz}" />, you need to enter `(x y z)` first, then `(expt (* x y z) 1/3)` second. The program will turn it into a 
+lambda expression for that expression.  
+Now for each of the three features, you need to input points (or vectors). For example, if you want to type in a point (2 5 2.2),
+then simply type in `(2 5 2.2)` for that. Also, they need the precision input, this is the same as in the previous derivative section.
+Below shows a calculation for directional derivative at (2 5 2.2), followed by the gradient.
