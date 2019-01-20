@@ -26,7 +26,7 @@
    "  this tool is written by cos. you can refer to page github.com/cleoold/calculus-toolbox "
    "for the source code of this programme and I will keep adding more features."
    "\n"
-   "  you can now enter q to see a list of function convention examples. "
+   "  you can now enter d to see a list of function convention examples. "
    "\n" "\n"
    "           *    *    *    *    *    *    *          "
    "\n"))
