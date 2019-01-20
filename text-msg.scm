@@ -71,6 +71,8 @@
    "but a number that is too small ie (expt 0.1 -20) does not guarantee the precision. the result might look weird "
    "or very incorrect. so an appriopriate precision is important."
    "\n"
+   "  you can run the with the same arguments but different recursive calls mutliple times to check consistency."
+   "\n"
    "  also notice some functions don't work by Newton's method. under this situation the programme might not terminate."
    "you have to close the window manually."
    "\n" "\n"))
