@@ -6,7 +6,7 @@ to select things in my menu.
   
 The repository containing the source codes is located [page](https://github.com/cleoold/calculus-toolbox). The programme is written in Scheme, you can
 open the file `runme.scm` in the main folder in `Drracket` to run it (as it includes `#lang scheme` prefix). If you are using a different 
-interpreter or compiler, you might need the corresponding module and commit out that `#`.
+interpreter or compiler, you might need the corresponding module and comment out that `#`.
   
 ---
 ## Library
