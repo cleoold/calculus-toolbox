@@ -75,7 +75,7 @@ You can find this option under the `vector` menu. You can input your vector u fi
 product for you, and if the length is 3, then it also returns the vector u × v.  
 ⋅⋅⋅<a href="https://imgbb.com/"><img src="https://i.ibb.co/KhqGcTp/42523.png" alt="42523" border="0"></a><br />
 ## Projection
-This feature produces three vectors at once upon you inputting two vectors. After you enter x first and then u, the followings are retunred in order:
+This feature produces three vectors at once upon you inputting two vectors. After you enter x first and then u, the followings are returned in order:
   1. Projection of vector x onto vector u. <img src="https://latex.codecogs.com/svg.latex?\inline&space;[\mathrm{prj_\mathbf{u}}]\mathbf{x}=\frac{\mathbf{u\cdot&space;x}}{\mathbf{u}^2}\mathbf{u}" title="[\mathrm{prj_\mathbf{u}}]\mathbf{x}=\frac{\mathbf{u\cdot x}}{\mathbf{u}^2}\mathbf{u}" />
   2. Perpendicular of vector x onto vector u. <img src="https://latex.codecogs.com/svg.latex?\inline&space;[\mathrm{perp_\mathbf{u}}]\mathbf{x}=\mathbf{x}-[\mathrm{prj_\mathbf{u}}]\mathbf{x}" title="[\mathrm{perp_\mathbf{u}}]\mathbf{x}=\mathbf{x}-[\mathrm{prj_\mathbf{u}}]\mathbf{x}" />
   3. reflection of vector x onto the hyperplane with normal u. <img src="https://latex.codecogs.com/svg.latex?\inline&space;[\mathrm{refl_\mathbf{u}}]\mathbf{x}=\mathbf{x}-[\mathrm{prj_\mathbf{u}}]2\mathbf{x}" title="[\mathrm{refl_\mathbf{u}}]\mathbf{x}=\mathbf{x}-[\mathrm{prj_\mathbf{u}}]2\mathbf{x}" />
