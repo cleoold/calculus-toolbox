@@ -4,7 +4,7 @@ With this tool, you can do math and engineering calculations, such as integrals,
 All you need to do are to stick with some function syntax in Scheme (like using brackets `()`) to enter formulas, and put integers
 to select things in my menu.  
   
-The repository containing the source codes is located [page](github.com/cleoold/calculus-toolbox). The programme is written in Scheme, you can
+The repository containing the source codes is located [page](https://github.com/cleoold/calculus-toolbox). The programme is written in Scheme, you can
 open the file `runme.scm` in the main folder in `Drracket` to run it (as it includes `#lang scheme` prefix). If you are using a different 
 interpreter or compiler, you might need the corresponding module and commit out that `#`.
   
@@ -14,9 +14,7 @@ The executable embeds all the necessary dll's in the single file. It includes th
 operators like ```(+ x y z), (- x y), (* x y), (/ x y), (sin x), (cos x), (tan x), (asin x), (acos x), (atan x), (sinh x), (cosh x), 
 (tanh x), (sqrt x), (log x), (exp x), (floor x), (ceiling x)```. Especially, x^3 is converted to `(expt x 3)`.  
   
-The tool itself provides a documentation about conversion of equation formats. For example,   
-           <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\small&space;1.5\,&space;\mathrm{cos}(\omega&space;t-kx&plus;\frac{\pi}{2})" title="\small \small 1.5\, \mathrm{cos}(\omega t-kx+\frac{\pi}{2})" />   
-is converted into `(* 1.5 (cos (+ (* w t) (-1 k x) (/ pi 2)) ) )`.
+The tool itself provides a documentation about conversion of equation formats. For example, <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\small&space;1.5\,&space;\mathrm{cos}(\omega&space;t-kx&plus;\frac{\pi}{2})" title="\small \small 1.5\, \mathrm{cos}(\omega t-kx+\frac{\pi}{2})" /> is converted into `(* 1.5 (cos (+ (* w t) (-1 k x) (/ pi 2)) ) )`.
   
 ## Using
 In Linux, open the terminal and navigate to /bin, use command `./calculus-tool` to open the executable.  
@@ -35,16 +33,24 @@ type `(+ (expt x 3) (- (exp x)) 3)`, then hit enter. Since the tool uses Newton'
 The tool will print a solution after you hit enter, or reports an error if the input format is not correct.  
 <a href="https://ibb.co/GPxKfdR"><img src="https://i.ibb.co/C01kpwQ/solve12.png" alt="solve12" border="1"></a>  
 You can later change your initial guess to find other solutions.  
-The programme will remember the input data from the last state it is run.  
+The programme will remember the input data from the last state in which it is run.  
 ### Derivative
-In this screen, also make sure include the variable `x`; this programme doesn't support other variables as input. You can input your desired point and precison. Note this precision represent the term h in the formula <img src="https://latex.codecogs.com/svg.latex?\small&space;f'(x)=[f(x&plus;h)-f(x)]/h" title="\small f'(x)=[f(x+h)-f(x)]/h" />. The result after evaluation will be then printed.
+In this screen, also make sure include the variable `x`; this programme doesn't support other variables as input. You can input your desired point and precison. Note this precision represent the term _h_ in the formula <img src="https://latex.codecogs.com/svg.latex?\small&space;f'(x)=[f(x&plus;h)-f(x)]/h" title="\small f'(x)=[f(x+h)-f(x)]/h" />. The result after evaluation will be then printed.
 If you also want the left derivative, you can go to the `additional` menu to do the exact same steps, which is useful for determining
 whether the derivative exists.
 ### Integration
 Like others, you have to include `x` and syntax. You will be asked to input the lower bound (from), the upper bound (to) and precision.
-Note this precision "delta" represents the length of the step <img src="https://latex.codecogs.com/svg.latex?\small&space;\left&space;\|&space;P&space;\right&space;\|" title="\small \left \| P \right \|" /> for the partition. This tool creates
+Note this precision _"delta"_ represents the length of the step <img src="https://latex.codecogs.com/svg.latex?\small&space;\left&space;\|&space;P&space;\right&space;\|" title="\small \left \| P \right \|" /> for the partition. This tool creates
 a uniform partition with that length (except the last sub-interval, please see [code](github.com/cleoold/Math-expressions-or-racket-/blob/folder1/math-num-integral.rkt) for info) and sum the average values of two ends of the subinterval according to the midpoint rule. This process can be described as  
 <img src="https://latex.codecogs.com/svg.latex?\small&space;\int_{[a,b]}f=\sum&space;_{k=1}^{N=\left&space;\lfloor&space;(b-a)/\delta&space;\right&space;\rfloor}\frac{1}{2}[f(p_{k-1})&plus;f(p_k)]\left&space;\|&space;P&space;\right&space;\|&plus;\frac{1}{2}[f(p_N)&plus;f(p_{N&plus;1})][b-a-N\left&space;\|&space;P&space;\right&space;\|]" title="\small \int_{[a,b]}f=\sum _{k=1}^{N=\left \lfloor (b-a)/\delta \right \rfloor}\frac{1}{2}[f(p_{k-1})+f(p_k)]\left \| P \right \|+\frac{1}{2}[f(p_N)+f(p_{N+1})][b-a-N\left \| P \right \|]" />  
 If you want to evaluate the left or right integral, you can go to the `additional` menu to do so. This is useful for determining if 
 the integral exists; if the programme crashes, then it is not integrable over the interval.
 ### Recurrence sequence
+If a sequence is determined recursively, then this tool provides great help for building a table and summing terms.  
+Before using, please acknowdge that the index of a sequence starts from __0__. if a term is determined recursively by its previous
+term, then it needs one base value. Such sequences look like <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\left&space;\{&space;a:a_0=A,a_k=f(a_{k-1})&space;\right&space;\}" title="\small \left \{ a:a_0=A,a_k=f(a_{k-1}) \right \}" /> . In this case, enter `1`. If a term is determined by two of its previous values, then it needs two base values, and (possibly) looks like
+<img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\left&space;\{&space;a:a_0=A,a_1=B,a_k=f(a_{k-2},a_{k-1})&space;\right&space;\}" title="\small \left \{ a:a_0=A,a_1=B,a_k=f(a_{k-2},a_{k-1}) \right \}" />. For this, enter `2`.  
+Now you can enter your A, and B if necessary. In the next step, if you entered `1`, then include `x` in your expression. That `x` represents the last term based on generating the new term. If you entered `2`, then use `x` for <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;a_{k-2}" title="\small a_{k-2}" />, and `y` for <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;a_{k-1}" title="\small a_{k-1}" />.  
+  
+You can then input your order to evaluate things, below shows a sequence defined by <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\left&space;\{a:&space;a_0=1,a_1=1,a_k=\sqrt{a_{k-2}}&plus;\sqrt{a_{k-1}}&space;\right&space;\}" title="\small \left \{a: a_0=1,a_1=1,a_k=\sqrt{a_{k-2}}+\sqrt{a_{k-1}} \right \}" />.
+<a href="https://ibb.co/KWXBF05"><img src="https://i.ibb.co/fH2Z41X/4211245.png" alt="4211245" border="1"></a>
