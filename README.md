@@ -36,7 +36,7 @@ The tool will print a solution after you hit enter, or reports an error if the i
 You can later change your initial guess to find other solutions.  
 The programme will remember the input data from the last state in which it is run.  
 ### Derivative
-In this screen, also make sure include the variable `x`; this programme doesn't support other variables as input. You can input your desired point and precison. Note this precision represent the term _h_ in the formula <img src="https://latex.codecogs.com/svg.latex?\small&space;f'(x)=[f(x&plus;h)-f(x)]/h" title="\small f'(x)=[f(x+h)-f(x)]/h" />. The result after evaluation will be then printed.
+In this screen, also make sure include the variable `x`; this programme doesn't support other variables as input. You can input your desired point and precison. Note this precision represents the term _h_ in the formula <img src="https://latex.codecogs.com/svg.latex?\small&space;f'(x)=[f(x&plus;h)-f(x)]/h" title="\small f'(x)=[f(x+h)-f(x)]/h" />. The result after evaluation will be then printed.
 If you also want the left derivative, you can go to the `additional` menu to do the exact same steps, which is useful for determining
 whether the derivative exists.
 ### Integration
