@@ -29,7 +29,7 @@ In the main menu, enter `1` to navigate to calculus menu, and then hit another `
 In this screen, type your function and be sure to include the variable `x` only. For example, to solve x^3 - e^x + 3 = 0, you need to
 type `(+ (expt x 3) (- (exp x)) 3)`, then hit enter. Since the tool uses Newton's method to evaluate, it will then ask you for an initial
  guess, type any number you think will be close to a solution. For precision, you can input `0.001` or other small numbers; the tool
- uses this to find the derivative. The next step is to determine how many resursive calls it will evaluate the root, since the sequence <img src="https://latex.codecogs.com/svg.latex?\small&space;x_{n&plus;1}=x_0-f(x_0)/f'(x_0)" title="\small x_{n+1}=x_n-f(x_n)/f'(x_n)" />  converges fast, you don't need to input a number that's too large.  
+ uses this to find the derivative. The next step is to determine how many resursive calls it will evaluate the root, since the sequence <img src="https://latex.codecogs.com/svg.latex?\small&space;x_{n&plus;1}=x_n-f(x_n)/f'(x_n)" title="\small x_{n+1}=x_n-f(x_n)/f'(x_n)" />  converges fast, you don't need to input a number that's too large.  
 The tool will print a solution after you hit enter, or reports an error if the input format is not correct.  
     
 ⋅⋅⋅<a href="https://ibb.co/GPxKfdR"><img src="https://i.ibb.co/C01kpwQ/solve12.png" alt="solve12" border="1"></a>  
