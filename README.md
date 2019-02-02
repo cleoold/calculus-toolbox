@@ -66,15 +66,15 @@ Now for each of the three features, you need to input points (or vectors). For e
 then simply type in `(2 5 2.2)` for that. Also, they need the precision input, this is the same as in the previous derivative section.
 Below shows a calculation for directional derivative at (2 3 9.2), followed by the gradient.  
 <a href="https://ibb.co/H4zPK2F"><img src="https://i.ibb.co/fFpNXS1/523t3.png" alt="523t3" border="0"></a>  
-## Decimal conversion
+### Decimal conversion
 This tool in under the `additional` menu. You can do the conversion from decimal to baseN (N >= 1), or from baseN to decimal
 (1 <= N < 10). The algorithm can be found [here](https://github.com/cleoold/Math-expressions-or-racket-/blob/folder1/binary.rkt).  
 ⋅⋅⋅<a href="https://imgbb.com/"><img src="https://i.ibb.co/NKnXSqk/53243.png" alt="53243" border="0"></a>  
-## Product of vector
+### Product of vector
 You can find this option under the `vector` menu. You can input your vector u first, followed by v. The tool will compute their dot
 product for you, and if the length is 3, then it also returns the vector u × v.  
 ⋅⋅⋅<a href="https://imgbb.com/"><img src="https://i.ibb.co/KhqGcTp/42523.png" alt="42523" border="0"></a><br />
-## Projection
+### Projection
 This feature produces three vectors at once upon you inputting two vectors. After you enter x first and then u, the followings are returned in order:
   1. Projection of vector x onto vector u. <img src="https://latex.codecogs.com/svg.latex?\inline&space;[\mathrm{prj_\mathbf{u}}]\mathbf{x}=\frac{\mathbf{u\cdot&space;x}}{\mathbf{u}^2}\mathbf{u}" title="[\mathrm{prj_\mathbf{u}}]\mathbf{x}=\frac{\mathbf{u\cdot x}}{\mathbf{u}^2}\mathbf{u}" />
   2. Perpendicular of vector x onto vector u. <img src="https://latex.codecogs.com/svg.latex?\inline&space;[\mathrm{perp_\mathbf{u}}]\mathbf{x}=\mathbf{x}-[\mathrm{prj_\mathbf{u}}]\mathbf{x}" title="[\mathrm{perp_\mathbf{u}}]\mathbf{x}=\mathbf{x}-[\mathrm{prj_\mathbf{u}}]\mathbf{x}" />
@@ -82,9 +82,11 @@ This feature produces three vectors at once upon you inputting two vectors. Afte
 
 ### And more minor tools
 The tool also provides vector rotation, vector molulo, sum/product of sequence and more.
+Further additions of features will be described [here](https://github.com/cleoold/calculus-toolbox/blob/master/versions/newfeature.md)
 
 ---
 ## Progress
 I give up on vector addition, hexadecimal conversion, building function table, etc as they are less challenging and can be found anywhere on-line or on your scientific calculator. In the future, I will plan to implement approximations of double integral, and some matrix operations such as multiplication and determinants.
+
 
 
