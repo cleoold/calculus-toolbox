@@ -82,7 +82,7 @@ This feature produces three vectors at once upon you inputting two vectors. Afte
   3. reflection of vector x onto the hyperplane with normal u. <img src="https://latex.codecogs.com/svg.latex?\inline&space;[\mathrm{refl_\mathbf{u}}]\mathbf{x}=\mathbf{x}-[\mathrm{prj_\mathbf{u}}]2\mathbf{x}" title="[\mathrm{refl_\mathbf{u}}]\mathbf{x}=\mathbf{x}-[\mathrm{prj_\mathbf{u}}]2\mathbf{x}" />
 
 ### And more minor tools
-The tool also provides vector rotation, vector molulo, sum/product of sequence and more.
+The tool also provides vector rotation, vector modulo, sum/product of sequence and more.
 Further additions of features will be described [here](https://github.com/cleoold/calculus-toolbox/blob/master/versions/newfeature.md)
 
 ---
