@@ -2,3 +2,4 @@
 20190117: project created. inplemented 4 features and their connections.
 20190118: various additions and deletions ... but reverted them back anyways
 20190119: inplemented sequence, vector, gradient.
+20190201: added curve length.
