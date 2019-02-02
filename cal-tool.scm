@@ -6,6 +6,7 @@
          "library/cal-library/newton-solve.scm"
          "library/cal-library/derivative-single-var.scm"
          "library/cal-library/integral1.scm"
+         "library/cal-library/curvelength.scm"
          "library/cal-library/rec-sequence1.scm"
          "library/cal-library/derivative-partial.scm"
          "library/cal-library/derivative-dir.scm"
@@ -39,8 +40,18 @@
                 (display derivative-intro-msg)
                 (derivative-application))
                ((eq? usr-cal '3)
-                (display integral-intro-msg)
-                (integral-application))
+                (display integral-main-intro)
+                (define usr-int (read))
+                (cond
+                  ((eq? usr-int '1)
+                   (display integral-intro-msg)
+                   (integral-application))
+                  ((eq? usr-int '2)
+                   (display curve-length-intro-msg)
+                   (curve-length-application))
+                  (else
+                   (display caltool-inc-order)
+                   (caltool-main))))             
                ((eq? usr-cal '4)
                 (display recsequence-main-intro-msg)
                 (display recsequence-main-select)
@@ -235,6 +246,49 @@
           (break-pt local-a local-b new-precision))
          ((eq? order '3)
           (integral-application))
+         ((eq? order 'q)
+          (caltool-main))
+         (else
+          (display caltool-inc-order)
+          (break-pt local-a local-b local-prec)))))
+    (break-pt a b precision)))
+
+;; ==============================================================
+
+(define (curve-length-application)
+  (display curve-length-ask-func)
+  (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
+  (display curve-length-ask-pointa)
+  (define a (eval (read) ns))
+  (display curve-length-ask-pointb)
+  (define b (eval (read) ns))
+  (display curve-length-ask-prec)
+  (define precision (read))
+  (cond ((and (procedure? f) (number? a) (number? b) (number? precision))
+         (newline)
+         (display (curve-length f a b precision)))
+        (else
+         (display curve-length-inc-func)
+         (curve-length-application)))
+  (local
+    ((define (break-pt local-a local-b local-prec)
+       (display curve-length-ask-msg)
+       (define order (read))
+       (cond
+         ((eq? order '1)
+          (display curve-length-ask-pointa)
+          (define new-a (eval (read) ns))
+          (display curve-length-ask-pointb)
+          (define new-b (eval (read) ns))
+          (display (curve-length f new-a new-b local-prec))
+          (break-pt new-a new-b local-prec))
+         ((eq? order '2)
+          (display curve-length-ask-prec)
+          (define new-precision (read))
+          (display (curve-length f local-a local-b new-precision))
+          (break-pt local-a local-b new-precision))
+         ((eq? order '3)
+          (curve-length-application))
          ((eq? order 'q)
           (caltool-main))
          (else

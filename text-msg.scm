@@ -127,6 +127,13 @@
   
 ;; ==============================================================
 
+(define integral-main-intro
+  (string-append
+   "  this tool currently supports `functions` defined by one variable. please select your feature.\n"
+   "  1-integral. 2-curve length.\n"))
+
+;; ==============================================================
+
 (define integral-intro-msg
   (string-append
    "  ================================================================================="
@@ -164,6 +171,45 @@
   "  make sure you typed in the correct format.\n \n")
 
 ;; ==============================================================
+
+
+
+(define curve-length-intro-msg
+  (string-append
+   "  ================================================================================="
+   "\n"
+   "  to input your function, use the full syntax such as `(- (cos x) (* 2 x))`, which represents f(x) = cos(x) - 2x."
+   "\n"
+   "  this tool behaves similarly to the previous numerical integral tool. it calculates the integral"
+   "\n"
+   "    \\int_{a}^{b} sqrt(dx^2 + dy^2),\n which is the length of the curve bounded by x=a, x=b, for function y=f(x)."
+   "\n"
+   "  to input the point, simply type the number of x axis. also, please stick with the variable `x`. " "\n" "\n"))
+
+(define curve-length-ask-func
+  "  please enter your function.\n")
+
+(define curve-length-ask-pointa
+  "  from which point?\n")
+
+(define curve-length-ask-pointb
+  "  to which point?\n")
+
+(define curve-length-ask-prec
+  "  enter your desired precision.\n")
+
+(define curve-length-ask-msg
+  (string-append
+   "\n" "\n"
+   "  what do you want to do next?" "\n"
+   "  1-change bounds. 2-change precision. 3-new function." "\n"
+   "  q-return." "\n"))
+
+(define curve-length-inc-func
+  "  make sure you typed in the correct format.\n \n")
+
+;; ==============================================================
+
 
 (define recsequence-main-intro-msg
   (string-append
