@@ -67,7 +67,7 @@ then simply type in `(2 5 2.2)` for that. Also, they need the precision input, t
 Below shows a calculation for directional derivative at (2 3 9.2), followed by the gradient.  
 <a href="https://ibb.co/H4zPK2F"><img src="https://i.ibb.co/fFpNXS1/523t3.png" alt="523t3" border="0"></a>  
 ## Decimal conversion
-This tool in under the `additional` menu. You can do the conversion from decimal to baseN (N >= 1), or from baseN to decimal
+This tool in under the `additional` menu. You can do the conversion from decimal to baseN (N >= 2), or from baseN to decimal
 (1 <= N < 10). The algorithm can be found [here](https://github.com/cleoold/Math-expressions-or-racket-/blob/folder1/binary.rkt).  
 ⋅⋅⋅<a href="https://imgbb.com/"><img src="https://i.ibb.co/NKnXSqk/53243.png" alt="53243" border="0"></a>  
 ## Product of vector

@@ -1,7 +1,6 @@
 #lang scheme/base
 
-(require scheme/local
-         scheme/math)
+(require scheme/math)
 
 (provide recursive-sequence1
          recursive-sequence2)
@@ -11,11 +10,10 @@
     (cond
       ((= n 0) A)
       (else
-       (local
-         ((define (adder a counter)
-            (cond ((= n counter) (f a))
-                  (else (adder (f a) (add1 counter))))))
-         (adder A 1))))))
+       (define (adder a counter)
+         (cond ((= n counter) (f a))
+               (else (adder (f a) (add1 counter)))))
+       (adder A 1)))))
 
 
 (define (recursive-sequence2 A B f)
@@ -24,8 +22,7 @@
       ((= n 0) A)
       ((= n 1) B)
       (else
-       (local
-         ((define (adder a b counter)
-            (cond ((= n counter) (f a b))
-                  (else (adder b (f a b) (add1 counter))))))
-         (adder A B 2))))))
+       (define (adder a b counter)
+         (cond ((= n counter) (f a b))
+               (else (adder b (f a b) (add1 counter)))))
+       (adder A B 2)))))

@@ -1,18 +1,15 @@
 #lang scheme/base
 
-(require scheme/local)
-
 (provide dec->basen
          basen->dec)
 
 (define (dec->basen nbase nnumber)
-  (local
-    [(define (dec-basen/reversed nnumber)
-       (if (zero? nnumber)
-           null
-           (cons (modulo nnumber nbase)
-                 (dec-basen/reversed (quotient nnumber nbase)))))]
-    (reverse (dec-basen/reversed nnumber))))
+  (define (dec-basen/reversed nnumber)
+    (if (zero? nnumber)
+        null
+        (cons (modulo nnumber nbase)
+              (dec-basen/reversed (quotient nnumber nbase)))))
+  (reverse (dec-basen/reversed nnumber)))
 
 (define (basen->dec nbase nnumber)
   (if (zero? nnumber)

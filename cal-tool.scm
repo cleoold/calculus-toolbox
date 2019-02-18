@@ -16,8 +16,7 @@
          "library/la-library/cross-rotation.scm"
          "library/la-library/projection.scm")
 
-(require scheme/local
-         scheme/math)
+(require scheme/math)
 
 (provide caltool-main)
 
@@ -142,8 +141,8 @@
         (else
          (display newtonsolve-inc-func)
          (newton-solve-application)))
-  (local
-    ((define (break-pt local-guess local-prec local-step)
+  
+    (define (break-pt local-guess local-prec local-step)
        (display newtonsolve-ask-msg)
        (define order (read))
        (cond
@@ -168,8 +167,9 @@
           (caltool-main))
          (else
           (display caltool-inc-order)
-          (break-pt local-guess local-prec local-step)))))
-    (break-pt guess step-differential step-recursive)))
+          (break-pt local-guess local-prec local-step))))
+  
+    (break-pt guess step-differential step-recursive))
 
 ;; ==============================================================
 
@@ -186,8 +186,8 @@
         (else
          (display derivative-inc-func)
          (derivative-application)))
-  (local
-    ((define (break-pt local-point local-prec)
+
+    (define (break-pt local-point local-prec)
        (display derivative-ask-msg)
        (define order (read))
        (cond
@@ -207,8 +207,9 @@
           (caltool-main))
          (else
           (display caltool-inc-order)
-          (break-pt local-point local-prec)))))
-    (break-pt point precision)))
+          (break-pt local-point local-prec))))
+  
+    (break-pt point precision))
 
 ;; ==============================================================
 
@@ -227,8 +228,8 @@
         (else
          (display integral-inc-func)
          (integral-application)))
-  (local
-    ((define (break-pt local-a local-b local-prec)
+
+    (define (break-pt local-a local-b local-prec)
        (display integral-ask-msg)
        (define order (read))
        (cond
@@ -250,8 +251,9 @@
           (caltool-main))
          (else
           (display caltool-inc-order)
-          (break-pt local-a local-b local-prec)))))
-    (break-pt a b precision)))
+          (break-pt local-a local-b local-prec))))
+  
+    (break-pt a b precision))
 
 ;; ==============================================================
 
@@ -270,8 +272,8 @@
         (else
          (display curve-length-inc-func)
          (curve-length-application)))
-  (local
-    ((define (break-pt local-a local-b local-prec)
+
+    (define (break-pt local-a local-b local-prec)
        (display curve-length-ask-msg)
        (define order (read))
        (cond
@@ -293,8 +295,9 @@
           (caltool-main))
          (else
           (display caltool-inc-order)
-          (break-pt local-a local-b local-prec)))))
-    (break-pt a b precision)))
+          (break-pt local-a local-b local-prec))))
+  
+    (break-pt a b precision))
 
 ;; ==============================================================
 
@@ -305,8 +308,8 @@
   (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
   (cond
     ((and (number? a) (procedure? f))
-     (local
-       ((define (break-pt)
+
+       (define (break-pt)
           (display recsequence-1-ask-msg)
           (define feature-order (read))
           (cond
@@ -342,8 +345,9 @@
              (caltool-main))
             (else
              (display caltool-inc-order)
-             (break-pt)))))
-       (break-pt)))
+             (break-pt))))
+       
+       (break-pt))
     (else
      (display recsequence-1-inc-func)
      (recsequence1-application))))
@@ -358,8 +362,8 @@
   (define f (eval (read (open-input-string (format "(lambda (x y) ~a)" (read)))) ns))
   (cond
     ((and (number? a) (number? b) (procedure? f))
-     (local
-       ((define (break-pt)
+
+       (define (break-pt)
           (display recsequence-2-ask-msg)
           (define feature-order (read))
           (cond
@@ -394,8 +398,9 @@
              (caltool-main))
             (else
              (display caltool-inc-order)
-             (break-pt)))))
-       (break-pt)))
+             (break-pt))))
+       
+       (break-pt))
     (else
      (display recsequence-2-inc-func)
      (recsequence2-application))))
@@ -412,8 +417,8 @@
   (define var (read))
   (cond
     ((and (list? point) (numberlist? point) (number? prec) (symbol? var))
-     (local
-       ((define (break-pt local-point local-prec local-var)
+
+       (define (break-pt local-point local-prec local-var)
           (newline)
           (display partialderivative-partial-ask-msg)
           (define order (read))
@@ -441,9 +446,10 @@
              (caltool-main))
             (else
              (display caltool-inc-order)
-             (break-pt local-point local-prec local-var)))))
+             (break-pt local-point local-prec local-var))))
+       
        (display (p-derivative f vars point var prec))
-       (break-pt point prec var)))
+       (break-pt point prec var))
     (else
      (display partialderivative-partial-inc-func)
      (partial-derivative-application f vars))))
@@ -456,8 +462,8 @@
   (define prec (read))
   (cond
     ((and (list? point) (numberlist? point) (number? prec))
-     (local
-       ((define (break-pt local-point local-prec)
+
+       (define (break-pt local-point local-prec)
           (newline)
           (display partialderivative-grad-ask-msg)
           (define order (read))
@@ -480,9 +486,10 @@
              (caltool-main))
             (else
              (display caltool-inc-order)
-             (break-pt local-point local-prec)))))
+             (break-pt local-point local-prec))))
+       
        (display (gradient f vars point prec))
-       (break-pt point prec)))
+       (break-pt point prec))
     (else
      (display partialderivative-grad-inc-func)
      (partial-gradient-application f vars))))
@@ -498,8 +505,8 @@
   (cond
     ((and (list? point) (numberlist? point) (number? prec)
           (list? dir) (numberlist? dir))
-     (local
-       ((define (break-pt local-point local-prec local-dir)
+
+       (define (break-pt local-point local-prec local-dir)
           (newline)
           (display partialderivative-dir-ask-msg)
           (define order (read))
@@ -527,9 +534,10 @@
              (caltool-main))
             (else
              (display caltool-inc-order)
-             (break-pt local-point local-prec local-dir)))))
+             (break-pt local-point local-prec local-dir))))
+       
        (display (directional-derivative f vars point dir prec))
-       (break-pt point prec dir)))
+       (break-pt point prec dir))
     (else
      (display partialderivative-dir-inc-func)
      (partial-direction-application f vars))))
@@ -687,7 +695,7 @@
      (display calextra-basen-ask-num)
      (define num (read))
      (cond
-       ((and (number? base) (number? num) (positive? base) (positive? num))
+       ((and (number? base) (number? num) (> base 1) (positive? num))
         (newline)
         (display (dec->basen base num))
         (newline)
@@ -736,8 +744,8 @@
         (else
          (display mag-inc-vec)
          (magnitude-application)))
-  (local
-    ((define (break-pt)
+
+    (define (break-pt)
        (display mag-ask-msg)
        (define order (read))
        (cond ((eq? order '1)
@@ -749,8 +757,9 @@
               (caltool-main))
              (else
               (display caltool-inc-order)
-              (break-pt)))))
-    (break-pt)))
+              (break-pt))))
+  
+    (break-pt))
 
 ;; ==============================================================
 

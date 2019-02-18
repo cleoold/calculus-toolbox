@@ -475,7 +475,7 @@
   "  1-another conversion. q-return.\n")
 
 (define calextra-basen-inc
-  "  check syntax.\n")
+  "  check your input. some inputs are not supported. you can check documentation for details.\n")
 
 
 ;; ==============================================================
