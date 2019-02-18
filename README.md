@@ -1,4 +1,4 @@
-# Calculus toolbox provides some easy computations related to math
+
 
 With this tool, you can do math and engineering calculations, such as integrals, recurrence sequences and vectors, more easily.
 All you need to do are to stick with some function syntax in Scheme (like using brackets `()`) to enter formulas, and put integers
