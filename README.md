@@ -56,7 +56,7 @@ term, then it needs one base value. Such sequences look like <img src="https://l
 Now you can enter your A, and B if necessary. In the next step, if you entered `1`, then include `x` in your expression. That `x` represents the last term based on generating the new term. If you entered `2`, then use `x` for <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;a_{k-2}" title="\small a_{k-2}" />, and `y` for <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;a_{k-1}" title="\small a_{k-1}" />.  
   
 You can then input your order to evaluate things, below shows a sequence defined by <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\left&space;\{a:&space;a_0=1,a_1=1,a_k=\sqrt{a_{k-2}}&plus;\sqrt{a_{k-1}}&space;\right&space;\}" title="\small \left \{a: a_0=1,a_1=1,a_k=\sqrt{a_{k-2}}+\sqrt{a_{k-1}} \right \}" />.  
-⋅⋅⋅<a href="https://imgur.com/c5FBV5Y"><img src="https://imgur.com/c5FBV5Y" alt="4211245" border="1"></a>
+⋅⋅⋅<a href="https://i.imgur.com/c5FBV5Y.png"><img src="https://i.imgur.com/c5FBV5Y.png" alt="4211245" border="1"></a>
 
 ### Gradient
 This menu calculates partial derivative, gradient, and directional derivative for a function defined by multiple variables.
