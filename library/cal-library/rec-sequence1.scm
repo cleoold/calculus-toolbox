@@ -1,9 +1,12 @@
 #lang scheme/base
 
 (require scheme/math)
+(require "../utility.scm")
 
 (provide recursive-sequence1
-         recursive-sequence2)
+         recursive-sequence2
+         recursive-sequence1-display
+         recursive-sequence2-display)
 
 (define (recursive-sequence1 A f)
   (lambda (n)
@@ -26,3 +29,28 @@
          (cond ((= n counter) (f a b))
                (else (adder b (f a b) (add1 counter)))))
        (adder A B 2)))))
+
+
+(define (recursive-sequence1-display A f from to)
+  (cond
+    ((>= from 0)
+     (define a0 ((recursive-sequence1 A f) from))
+     (for ((k (in-range from to)))
+       (disf "   a[~a]=~a\n" k a0)
+       (set! a0 (f a0))))
+    (else (recursive-sequence1-display A f 0 to))))
+
+
+(define (recursive-sequence2-display A B f from to)
+  (cond
+    ((>= from 0)
+     (define a0 ((recursive-sequence2 A B f) from))
+     (define b0 ((recursive-sequence2 A B f) (add1 from)))
+     (define temp 0)
+     (for ((k (in-range from to)))
+       (disf "   a[~a]=~a\n" k a0)
+       (set! temp (f a0 b0))
+       (set! a0 b0)
+       (set! b0 temp)))
+    (else (recursive-sequence2-display A B f 0 to))))
+

@@ -4,3 +4,4 @@
 20190119: inplemented sequence, vector, gradient.
 20190201: added curve length.
 20190218: removed module `local`.
+20190410: second derivates implemented. abstracted partial derivative functions. build-recurrence sequence reworked.

@@ -106,7 +106,7 @@
    "\n"
    "  to input the point, simply type the number of x axis. also, please stick with the variable `x`." "\n" "\n"
    "  lastly, the performance second derivate depends on largely on the number of digits in your `precision` input "
-   "and your function. do not use numbers that is too small (eg twenty 0s in front of 1). try multiple precisions.\n\n"))
+   "and your function. do not use numbers that is too small (eg twenty 0s in front of 1). try multiple precisions.\n"))
 
 (define derivative-ask-func
   "  please enter your function.\n")
@@ -245,7 +245,7 @@
    "      a(k) = f[a(k-2), a(k-1)]. "
    "\n"
    "  for example, if you want to compute {a(0) = 1, a(1) = 1, a(k) = a(k-2) + a(k-1)}, type `1` for A, `1` for B, and `(+ x y)` for the "
-   "function. this produces a fibonacci sequence. also be sure to include `x` for the second-previous term (k-2), and `y` for previous term (k-1)." 
+   "function. this produces a fibonacci sequence. also be sure to include `x` for the second-previous term, and `y` for previous term. "
    "\n"
    "  if this is what you want, enter 2. "
    "\n"
