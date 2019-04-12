@@ -6,3 +6,8 @@ The following process shows the length of half an arc of radius 1.
   
 ⋅⋅⋅<a href="https://i.imgur.com/1jUeuuI.png"><img src="https://i.imgur.com/1jUeuuI.png" alt="4211245" border="1"></a>  
 An error term is not omitted by default; they are negligible still.
+
+Updated on Apr. 11, 2019.
+### Extended Euclidean Algorithm
+This feature is under `additional` menu. It helps users to find the GCD of two given integers and their coefficients.  
+⋅⋅⋅<a href="https://i.imgur.com/o8g2ec4.png"><img src="https://i.imgur.com/o8g2ec4.png" alt="4211245" border="1"></a> 

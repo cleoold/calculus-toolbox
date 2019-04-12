@@ -83,6 +83,9 @@
                    (bigpi-application))
                   ((eq? usr-extra '5)
                    (basen-application))
+                  ((eq? usr-extra '6)
+                   (display calextra-eea-intro-msg)
+                   (eea-application))
                   (else
                    (display caltool-inc-order)
                    (caltool-main))))
@@ -736,6 +739,28 @@
      (display caltool-inc-order)
      (basen-application))))
         
+;; ==============================================================
+
+(define (eea-application)
+  (display calextra-eea-ask-1st)
+  (define a (read))
+  (display calextra-eea-ask-2nd)
+  (define b (read))
+  (cond ((and (integer? a) (integer? b))
+         (gen-eea a b)
+         (newline)
+         (display calextra-eea-ask-next)
+         (define order (read))
+         (cond ((eq? order '1)
+                (eea-application))
+               ((eq? order 'q)
+                (caltool-main))
+               (else
+                (caltool-main))))
+        (else
+         (display calextra-eea-inc)
+         (eea-application))))
+
 ;; ==============================================================
 
 (define (magnitude-application)

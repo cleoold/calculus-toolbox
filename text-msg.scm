@@ -417,7 +417,7 @@
   (string-append
    "  select your feature."
    "\n"
-   " 1-left/right derivative. 2-left/right integral. 3-SIGMA. 4-PI. 5-baseN converter."
+   " 1-left/right derivative. 2-left/right integral. 3-SIGMA. 4-PI. 5-baseN converter. 6-EEA."
    "\n" "\n"))
 
 (define calextra-derivative-intro-msg
@@ -479,6 +479,24 @@
 (define calextra-basen-inc
   "  check your input. some inputs are not supported. you can check documentation for details.\n")
 
+(define calextra-eea-intro-msg
+  (string-append
+   "  ================================================================================="
+   "\n"
+   "  this tool builds a list using extended Euclidean algorithm to find the greatest common divisor of two integers. "
+   "\n" "\n"))
+
+(define calextra-eea-ask-1st
+  "  type your first integer.\n")
+
+(define calextra-eea-ask-2nd
+  "  type your second integer.\n")
+
+(define calextra-eea-ask-next
+  "  1-another one. q-return.\n")
+
+(define calextra-eea-inc
+  "  check your inputs. make sure they are integers.\n")
 
 ;; ==============================================================
 

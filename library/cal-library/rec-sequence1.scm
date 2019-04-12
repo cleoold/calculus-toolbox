@@ -31,12 +31,14 @@
        (adder A B 2)))))
 
 
+;; below print a list for a recurrence sequence
+
 (define (recursive-sequence1-display A f from to)
   (cond
     ((>= from 0)
      (define a0 ((recursive-sequence1 A f) from))
      (for ((k (in-range from to)))
-       (disf "   a[~a]=~a\n" k a0)
+       (disf "   a[~a] = ~a\n" k a0)
        (set! a0 (f a0))))
     (else (recursive-sequence1-display A f 0 to))))
 
@@ -48,7 +50,7 @@
      (define b0 ((recursive-sequence2 A B f) (add1 from)))
      (define temp 0)
      (for ((k (in-range from to)))
-       (disf "   a[~a]=~a\n" k a0)
+       (disf "   a[~a] = ~a\n" k a0)
        (set! temp (f a0 b0))
        (set! a0 b0)
        (set! b0 temp)))
