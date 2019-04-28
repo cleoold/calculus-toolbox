@@ -24,6 +24,8 @@
 
 (display caltool-intro-msg)
 
+;; driver programme. it links all the modules defined below into menus and submenus
+;; the programme uses recursive approach
 (define (caltool-main)
   (display caltool-select-main)
   (define usr-main (read))
@@ -126,6 +128,7 @@
          
 ;; ==============================================================
 
+;; the submenu of newton's method.
 (define (newton-solve-application)
   (display newtonsolve-ask-func)
   (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
@@ -144,6 +147,8 @@
          (display newtonsolve-inc-func)
          (newton-solve-application)))
   
+  ;; a new argument will be created and it will enter a recursion if the user changes one of 
+  ;; his arguments. the similar approach is used for below other implementations
     (define (break-pt local-guess local-prec local-step)
        (display newtonsolve-ask-msg)
        (define order (read))
@@ -175,6 +180,7 @@
 
 ;; ==============================================================
 
+;; the submenu for derivative of a function
 (define (derivative-application)
   (display derivative-ask-func)
   (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
@@ -217,6 +223,7 @@
 
 ;; ==============================================================
 
+;; the submenu for the definite integral of a function
 (define (integral-application)
   (display integral-ask-func)
   (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
@@ -261,6 +268,8 @@
 
 ;; ==============================================================
 
+;; the submenu for curve approximation of a function
+;; *can be merged into integral menu
 (define (curve-length-application)
   (display curve-length-ask-func)
   (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
@@ -305,6 +314,7 @@
 
 ;; ==============================================================
 
+;; the submenu for building a recursive sequence with one term
 (define (recsequence1-application)
   (display recsequence-1-ask-a)
   (define a (eval (read) ns))
@@ -356,6 +366,7 @@
      (recsequence1-application))))
 
 
+;; the submenu for building a recursive sequence with two terms
 (define (recsequence2-application)
   (display recsequence-2-ask-a)
   (define a (eval (read) ns))
@@ -409,7 +420,10 @@
 
 ;; ==============================================================
 
+;; the submenu for partial derivative-related calculations
 
+;; the submenu to calculate partial derivatives. this function is accessed through the partial-derivative driver function
+;; partial-derivative-application: (Num ... Num -> Num) (Listof Char) -> Void
 (define (partial-derivative-application f vars)
   (display partialderivative-partial-ask-point)
   (define point (read))
@@ -461,6 +475,8 @@
      (partial-derivative-application f vars))))
 
 
+;; the submenu to calculate gradients. this function is accessed through the partial-derivative driver function
+;; partial-gradient-application: (Num ... Num -> Num) (Listof Char) -> Void
 (define (partial-gradient-application f vars)
   (display partialderivative-grad-ask-point)
   (define point (read))
@@ -501,6 +517,8 @@
      (partial-gradient-application f vars))))
 
 
+;; the submenu to calculate directional derivatives. this function is accessed through the partial-derivative driver function
+;; partial-direction-application: (Num ... Num -> Num) (Listof Char) -> Void
 (define (partial-direction-application f vars)
   (display partialderivative-dir-ask-point)
   (define point (read))
@@ -549,6 +567,8 @@
      (partial-direction-application f vars))))
 
 
+;; the driver of partial derivative features. function and variable list are created here and then
+;; passed to the select function
 (define (partial-application-enter-intro)
   (display partialderivative-ask-vars)
   (define vars (read))
@@ -561,7 +581,8 @@
      (display partialderivative-partial-inc-func)
      (partial-application-enter-intro))))
 
-
+;; the selection menu. will call each feature function to complete calculations
+;; partial-application-select: (Num ... Num -> Num) (Listof Char) -> Void
 (define (partial-application-select vars f)
   (display partialderivative-ask-feature)
   (define par-order (read))
@@ -581,6 +602,7 @@
 
 ;; ==============================================================
 
+;; the submenu for left and right derivatives
 (define (derivative/lr-application)
   (display derivative-ask-func)
   (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
@@ -596,7 +618,7 @@
          (display calextra-toreturn)
          (define order (read))
          (cond
-     ;      ((eq? order 'q)
+     ;      ((eq? order 'q) ; not implremented yet. all actions except entering 1 result in quitting
      ;       (caltool-main))
            ((eq? order '1)
             (derivative/lr-application))
@@ -608,6 +630,7 @@
 
 ;; ==============================================================
 
+;; the submenu for left and right definite integrals
 (define (integral/lr-application)
   (display integral-ask-func)
   (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
@@ -637,6 +660,7 @@
 
 ;; ==============================================================
 
+;; the submenu for summing closed forms
 (define (sigma-application)
   (display recsequence-1-ask-func)
   (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
@@ -664,6 +688,7 @@
 
 ;; ==============================================================
 
+;; the submenu for multiplying closed forms
 (define (bigpi-application)
   (display recsequence-1-ask-func)
   (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
@@ -690,7 +715,9 @@
          (bigpi-application))))
 
 ;; ==============================================================
-  
+
+;; the submenu for conversion bewtwwen decimal and other bases
+;; contains a selection menu: splits into two features
 (define (basen-application)
   (display calextra-basen-ask-msg)
   (define basn-order (read))
@@ -741,6 +768,7 @@
         
 ;; ==============================================================
 
+;; the submenu for using extended Euclidean algorithm
 (define (eea-application)
   (display calextra-eea-ask-1st)
   (define a (read))
@@ -763,6 +791,7 @@
 
 ;; ==============================================================
 
+;; the submenu for magnitude of a vector
 (define (magnitude-application)
   (display mag-ask-vec)
   (define u (read))
@@ -791,7 +820,7 @@
 
 ;; ==============================================================
 
-
+;; the submenu for dot and cross products of vectors
 (define (product-application)
   (display product-ask-vec1)
   (define u (read))
@@ -823,6 +852,7 @@
 
 ;; ==============================================================
 
+;; the submenu for projections of a vector
 (define (projection-application)
   (display projection-ask-vec1)
   (define x (read))
@@ -851,6 +881,7 @@
 
 ;; ==============================================================
 
+;; the submenu for rotating a 2d vector
 (define (rotation2d-application)
   (display rotation2d-ask-vec)
   (define u (read))
