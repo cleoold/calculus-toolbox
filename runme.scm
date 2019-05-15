@@ -2,4 +2,13 @@
 
 (require "cal-tool.scm")
 
-(caltool-main)
+(with-handlers ((exn:fail:contract?
+                 (lambda (e) (display "CONTRACT FAIL: check inputs are according to the format and try again.\n\n")
+                   (display "the programme is recovered from a contract failure error.\n")
+                   (display "report the error if your input was correct.\n")
+                   (caltool-main)))
+                (exn:fail:syntax?
+                 (lambda (e) (display "SYNTAX FAIL: be sure the variables are precisely as required.\n\n")
+                   (display "the programme is recovered from a syntax failure error.\n")
+                   (caltool-main))))
+(caltool-main))

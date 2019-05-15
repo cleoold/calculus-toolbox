@@ -14,8 +14,8 @@
       ((= n 0) A)
       (else
        (define (adder a counter)
-         (cond ((= n counter) (f a))
-               (else (adder (f a) (add1 counter)))))
+         (cond ((= n counter) (f a counter))
+               (else (adder (f a counter) (add1 counter)))))
        (adder A 1)))))
 
 
@@ -26,8 +26,8 @@
       ((= n 1) B)
       (else
        (define (adder a b counter)
-         (cond ((= n counter) (f a b))
-               (else (adder b (f a b) (add1 counter)))))
+         (cond ((= n counter) (f a b counter))
+               (else (adder b (f a b counter) (add1 counter)))))
        (adder A B 2)))))
 
 
@@ -39,7 +39,7 @@
      (define a0 ((recursive-sequence1 A f) from))
      (for ((k (in-range from to)))
        (disf "   a[~a] = ~a\n" k a0)
-       (set! a0 (f a0))))
+       (set! a0 (f a0 (+ k 1)))))
     (else (recursive-sequence1-display A f 0 to))))
 
 
@@ -51,7 +51,7 @@
      (define temp 0)
      (for ((k (in-range from to)))
        (disf "   a[~a] = ~a\n" k a0)
-       (set! temp (f a0 b0))
+       (set! temp (f a0 b0 (+ k 2)))
        (set! a0 b0)
        (set! b0 temp)))
     (else (recursive-sequence2-display A B f 0 to))))

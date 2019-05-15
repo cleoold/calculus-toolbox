@@ -1,8 +1,9 @@
 
-20190117: project created. inplemented 4 features and their connections.
+20190117: project created. implemented 4 features and their connections.
 20190118: various additions and deletions ... but reverted them back anyways
-20190119: inplemented sequence, vector, gradient.
+20190119: implemented sequence, vector, gradient.
 20190201: added curve length.
 20190218: removed module `local`.
-20190410: second derivates implemented. abstracted partial derivative functions. build-recurrence sequence reworked.
+20190410: second derivatives implemented. abstracted partial derivative functions. build-recurrence sequence reworked.
 20190411: EEA implemented.
+20190515: recurrence sequence fixed (term k). error check in integral.

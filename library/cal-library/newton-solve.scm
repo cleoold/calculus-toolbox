@@ -9,4 +9,4 @@
 
 (define (newton-solve f guess step)
   (recursive-sequence1 guess
-    (lambda (x) (- x (/ (f x) (right-derivative f x step))))))
+    (lambda (x n) (- x (/ (f x) (right-derivative f x step))))))

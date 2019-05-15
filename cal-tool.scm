@@ -5,7 +5,6 @@
          "library/cal-library/newton-solve.scm"
          "library/cal-library/derivative-single-var.scm"
          "library/cal-library/integral1.scm"
-         "library/cal-library/curvelength.scm"
          "library/cal-library/rec-sequence1.scm"
          "library/cal-library/derivative-partial.scm"
          "library/cal-library/derivative-dir.scm"
@@ -319,7 +318,7 @@
   (display recsequence-1-ask-a)
   (define a (eval (read) ns))
   (display recsequence-1-ask-func)
-  (define f (eval (read (open-input-string (format "(lambda (x) ~a)" (read)))) ns))
+  (define f (eval (read (open-input-string (format "(lambda (x k) ~a)" (read)))) ns))
   (cond
     ((and (number? a) (procedure? f))
 
@@ -373,7 +372,7 @@
   (display recsequence-2-ask-b)
   (define b (eval (read) ns))
   (display recsequence-2-ask-func)
-  (define f (eval (read (open-input-string (format "(lambda (x y) ~a)" (read)))) ns))
+  (define f (eval (read (open-input-string (format "(lambda (x y k) ~a)" (read)))) ns))
   (cond
     ((and (number? a) (number? b) (procedure? f))
 

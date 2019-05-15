@@ -11,18 +11,25 @@
          sigma bigpi
          gen-eea)
 
+(define-syntax-rule (checkdiv f)
+  (with-handlers ((exn:fail:contract:divide-by-zero?
+                   (lambda (e) "div")))
+    f))
+
 
 (define (left-derivative f x0 step)
   (/ (- (f x0) (f (- x0 step))) step))
 
 
 (define (area-fx-rectangular-left f a b step)
-  (area/acc/temp f b step a a
-    (lambda (interval) (car interval))))
+  (checkdiv
+   (area/acc/temp f b step a a
+                  (lambda (interval) (car interval)))))
 
 (define (area-fx-rectangular-right f a b step)
-  (area/acc/temp f b step a a
-    (lambda (interval) (cadr interval))))
+  (checkdiv
+   (area/acc/temp f b step a a
+                  (lambda (interval) (cadr interval)))))
 
 
 (define (sigma f n)

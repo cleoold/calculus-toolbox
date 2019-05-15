@@ -17,8 +17,7 @@ operators like ```(+ x y z), (- x y), (* x y), (/ x y), (sin x), (cos x), (tan x
 The tool itself provides a documentation about conversion of equation formats. For example, <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\small&space;1.5\,&space;\mathrm{cos}(\omega&space;t-kx&plus;\frac{\pi}{2})" title="\small \small 1.5\, \mathrm{cos}(\omega t-kx+\frac{\pi}{2})" /> is converted into `(* 1.5 (cos (+ (* w t) (-1 k x) (/ pi 2)) ) )`.
   
 ## Using
-In Linux, open the terminal and navigate to /bin, use command `./calculus-tool` to open the executable.  
-Under the calculus-toolbox/standalone-executables/ folder, you can find the standalone executable files that can be run on Linux and Windows.
+`raco exe --gui --embed-dlls runme.scm` to create an executable file taht can be run.
   
 ---
 ## Instruction
@@ -51,8 +50,8 @@ the integral exists; if the programme crashes, then it is not integrable over th
 ### Recurrence sequence
 If a sequence is determined recursively, then this tool provides great help for building a table and summing terms.  
 Before using, please acknowdge that the index of a sequence starts from __0__. if a term is determined recursively by its previous
-term, then it needs one base value. Such sequences look like <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\left&space;\{&space;a:a_0=A,a_k=f(a_{k-1})&space;\right&space;\}" title="\small \left \{ a:a_0=A,a_k=f(a_{k-1}) \right \}" /> . In this case, enter `1`. If a term is determined by two of its previous values, then it needs two base values, and (possibly) looks like
-<img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\left&space;\{&space;a:a_0=A,a_1=B,a_k=f(a_{k-2},a_{k-1})&space;\right&space;\}" title="\small \left \{ a:a_0=A,a_1=B,a_k=f(a_{k-2},a_{k-1}) \right \}" />. For this, enter `2`.  
+term, then it needs one base value. Such sequences look like <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\left&space;\{&space;a:a_0=A,a_k=f(a_{k-1},k)&space;\right&space;\}" title="\small \left \{ a:a_0=A,a_k=f(a_{k-1}) \right \}" /> . In this case, enter `1`. If a term is determined by two of its previous values, then it needs two base values, and (possibly) looks like
+<img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\left&space;\{&space;a:a_0=A,a_1=B,a_k=f(a_{k-2},a_{k-1},k)&space;\right&space;\}" title="\small \left \{ a:a_0=A,a_1=B,a_k=f(a_{k-2},a_{k-1}) \right \}" />. For this, enter `2`.  
 Now you can enter your A, and B if necessary. In the next step, if you entered `1`, then include `x` in your expression. That `x` represents the last term based on generating the new term. If you entered `2`, then use `x` for <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;a_{k-2}" title="\small a_{k-2}" />, and `y` for <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;a_{k-1}" title="\small a_{k-1}" />.  
   
 You can then input your order to evaluate things, below shows a sequence defined by <img src="https://latex.codecogs.com/svg.latex?\inline&space;\small&space;\left&space;\{a:&space;a_0=1,a_1=1,a_k=\sqrt{a_{k-2}}&plus;\sqrt{a_{k-1}}&space;\right&space;\}" title="\small \left \{a: a_0=1,a_1=1,a_k=\sqrt{a_{k-2}}+\sqrt{a_{k-1}} \right \}" />.  
